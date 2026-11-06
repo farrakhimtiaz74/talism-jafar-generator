@@ -27,9 +27,6 @@
 <style>
 :root{--gold:#d4af37;--gold2:#f5d76e;--card:#0d1f16;--line:#2a4a38;--text:#f5f1e6;--muted:#c9bfa5;--bg1:#14532d;--bg2:#04150d;--input:#07130c;--active:#0b4a2e;--note:#132a1d}
 [data-theme="blue"]{--gold:#60a5fa;--gold2:#bfdbfe;--card:#10243f;--line:#2b4a73;--muted:#b9cbe4;--bg1:#1d4ed8;--bg2:#0b1e3a;--input:#0a1a30;--active:#2563eb;--note:#122c4d}
-[data-theme="purple"]{--gold:#c084fc;--gold2:#e9d5ff;--card:#241038;--line:#4c2a6e;--muted:#d8c8ec;--bg1:#581c87;--bg2:#17082b;--input:#1a0b2e;--active:#7c3aed;--note:#2c1547}
-[data-theme="noir"]{--gold:#f59e0b;--gold2:#fcd34d;--card:#141414;--line:#3f3f46;--muted:#d4d4d8;--bg1:#1a1a1a;--bg2:#000000;--input:#0a0a0a;--active:#78350f;--note:#1c1c1c}
-[data-theme="cream"]{--gold:#b8860b;--gold2:#8a6d1f;--card:#fffdf6;--line:#d9c9a3;--text:#243028;--muted:#68705f;--bg1:#fff7e0;--bg2:#f3e7c8;--input:#fffef9;--active:#dcebd8;--note:#fbf3d9}
 *{box-sizing:border-box}
 body{margin:0;font-family:'Noto Nastaliq Urdu','Poppins',Tahoma,sans-serif;background:radial-gradient(1000px 500px at 50% -100px,var(--bg1),var(--bg2));color:var(--text);line-height:2.1}
 header{text-align:center;padding:26px 16px 6px}
@@ -93,8 +90,6 @@ body[data-lang="hi"]{font-family:'Noto Sans Devanagari',Tahoma,sans-serif;line-h
 #loh table{border:3px double var(--gold);background:rgba(0,0,0,.18)}
 #resultCard{border:2px solid var(--gold);box-shadow:inset 0 0 0 5px var(--card),inset 0 0 0 6px var(--gold),0 12px 32px rgba(0,0,0,.3)}
 .tablogo{width:18px;height:18px;vertical-align:-4px;margin-inline-end:5px}
-[data-theme="cream"] h2{color:#7a5c10}
-[data-theme="cream"] .sub,[data-theme="cream"] .note{color:#5c6650}
 @media print{body{background:#fff}header,main,footer,.adbox{display:none}#printArea{display:block;color:#000;font-family:Tahoma,Arial,sans-serif;padding:20px;white-space:pre-wrap}}
 </style>
 </head>
@@ -122,12 +117,7 @@ body[data-lang="hi"]{font-family:'Noto Sans Devanagari',Tahoma,sans-serif;line-h
 <div class="swatches">
 <button class="sw on" data-theme-set="classic" title="Classic Green + Gold" style="background:linear-gradient(135deg,#14532d,#d4af37)"></button>
 <button class="sw" data-theme-set="blue" title="Professional Blue" style="background:linear-gradient(135deg,#1d4ed8,#60a5fa)"></button>
-<button class="sw" data-theme-set="purple" title="Royal Purple + Gold" style="background:linear-gradient(135deg,#581c87,#c084fc)"></button>
-<button class="sw" data-theme-set="noir" title="Amber Noir" style="background:linear-gradient(135deg,#000,#f59e0b)"></button>
-<button class="sw" data-theme-set="cream" title="Light Cream" style="background:linear-gradient(135deg,#fff7e0,#b8860b)"></button>
 </div></div>
-<div style="flex:1;min-width:150px"><label><span data-i="fontLbl">حروف کا سائز</span> A− / A+</label>
-<input type="range" id="fontRange" min="85" max="130" value="100" style="padding:0"></div>
 </div>
 
 <div class="tabs">
@@ -364,7 +354,6 @@ document.getElementById('langSel').addEventListener('change',function(){applyLan
 var sws=document.querySelectorAll('[data-theme-set]');
 function applyTheme(name){document.documentElement.setAttribute('data-theme',name);try{localStorage.setItem('jafarTheme',name);}catch(e){}for(var i=0;i<sws.length;i++){sws[i].classList.toggle('on',sws[i].getAttribute('data-theme-set')===name);}}
 for(var i=0;i<sws.length;i++){sws[i].addEventListener('click',function(){applyTheme(this.getAttribute('data-theme-set'));});}
-document.getElementById('fontRange').addEventListener('input',function(){document.body.style.zoom=(this.value/100);try{localStorage.setItem('jafarZoom',this.value);}catch(e){}});
 var lastFocus=null;
 document.addEventListener('focusin',function(e){if(e.target&&(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'))lastFocus=e.target;});
 var KB='ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ہ ھ ء ی ے'.split(' ');
@@ -462,7 +451,7 @@ for(var i=0;i<keys.length;i++){var v=ABJAD[keys[i]];var key=keys[i]+v;if(seenA[k
 for(var i=0;i<cells.length;i++){at+=cells[i];if(i%6===5)at+='</tr><tr>';}
 at+='</tr></table>';document.getElementById('abjadTable').innerHTML=at;
 try{var sl=localStorage.getItem('jafarLang');if(sl&&I18N[sl])applyLang(sl);else applyLang('ur');}catch(e){applyLang('ur');}
-try{var st=localStorage.getItem('jafarTheme');if(st)applyTheme(st);var sz=localStorage.getItem('jafarZoom');if(sz){document.getElementById('fontRange').value=sz;document.body.style.zoom=(sz/100);}}catch(e){}
+try{var st=localStorage.getItem('jafarTheme');if(st==='blue')applyTheme('blue');else applyTheme('classic');try{localStorage.removeItem('jafarZoom');}catch(e){}document.body.style.zoom='';}catch(e){}
 renderWazifa();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
 

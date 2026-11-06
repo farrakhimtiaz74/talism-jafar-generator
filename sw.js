@@ -1,4 +1,4 @@
-var CACHE = 'jafar-v7';
+var CACHE = 'jafar-v8';
 var FILES = ['./', './index.html', './poster.html', './pro.html', './logo.svg', './burj.html', './ism-e-azam.html', './baby-name.html', './compatibility.html', './khwab.html', './wazifa-library.html', './mohabbat-jafar.html', './rizq-jafar.html', './shadi-jafar.html', './istikhara-online.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', function(e) {
   self.skipWaiting();
