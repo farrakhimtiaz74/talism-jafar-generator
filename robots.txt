@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://farrakhimtiaz74.github.io/talism-jafar-generator/sitemap.xml

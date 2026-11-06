@@ -1,5 +1,5 @@
-var CACHE = 'jafar-v4';
-var FILES = ['./', './index.html', './poster.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+var CACHE = 'jafar-v5';
+var FILES = ['./', './index.html', './poster.html', './burj.html', './ism-e-azam.html', './baby-name.html', './compatibility.html', './khwab.html', './wazifa-library.html', './mohabbat-jafar.html', './rizq-jafar.html', './shadi-jafar.html', './istikhara-online.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', function(e) {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(function(c) { return c.addAll(FILES); }));
