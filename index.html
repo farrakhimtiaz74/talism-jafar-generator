@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="ur" dir="rtl" data-theme="classic">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>طلسم جفر جنریٹر — Talism Jafar Generator | Free Ilm-e-Jafar Tool</title>
-<meta name="description" content="Free Talism Jafar Generator: Abjad-e-Qamri counting with per-letter breakdown, classic Takseer (Sadr-o-Muakhkhar / Muakhkhar-o-Sadr), Satr-e-Asasi, 3x3 and 4x4 Loh, plus Mustahsila-e-Qurani Istikhara. 100% in-browser, no signup.">
+<meta name="description" content="Free Talism Jafar Generator in 5 languages with 5 themes: Abjad-e-Qamri per-letter breakdown, classic Takseer, Satr-e-Asasi, 3x3 and 4x4 Loh with image download, Mustahsila-e-Qurani Istikhara. 100% in-browser.">
 <meta property="og:title" content="Talism Jafar Generator — Free">
-<meta property="og:description" content="Classic Jafar Takseer, Abjad breakdown, Loh 3x3/4x4 and Qurani Istikhara — free, in-browser.">
+<meta property="og:description" content="Classic Jafar Takseer, Abjad breakdown, Loh 3x3/4x4 and Qurani Istikhara — free, in-browser, 5 languages, 5 themes.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://farrakhimtiaz74.github.io/talism-jafar-generator/">
 <link rel="manifest" href="manifest.webmanifest">
@@ -24,27 +24,36 @@
 ]}
 </script>
 <style>
-:root{--gold:#d4af37;--gold2:#f5d76e;--card:#0d1f16;--line:#2a4a38;--text:#f5f1e6;--muted:#c9bfa5}
+:root{--gold:#d4af37;--gold2:#f5d76e;--card:#0d1f16;--line:#2a4a38;--text:#f5f1e6;--muted:#c9bfa5;--bg1:#14532d;--bg2:#04150d;--input:#07130c;--active:#0b4a2e;--note:#132a1d}
+[data-theme="blue"]{--gold:#60a5fa;--gold2:#bfdbfe;--card:#10243f;--line:#2b4a73;--muted:#b9cbe4;--bg1:#1d4ed8;--bg2:#0b1e3a;--input:#0a1a30;--active:#2563eb;--note:#122c4d}
+[data-theme="purple"]{--gold:#c084fc;--gold2:#e9d5ff;--card:#241038;--line:#4c2a6e;--muted:#d8c8ec;--bg1:#581c87;--bg2:#17082b;--input:#1a0b2e;--active:#7c3aed;--note:#2c1547}
+[data-theme="noir"]{--gold:#f59e0b;--gold2:#fcd34d;--card:#141414;--line:#3f3f46;--muted:#d4d4d8;--bg1:#1a1a1a;--bg2:#000000;--input:#0a0a0a;--active:#78350f;--note:#1c1c1c}
+[data-theme="cream"]{--gold:#b8860b;--gold2:#8a6d1f;--card:#fffdf6;--line:#d9c9a3;--text:#243028;--muted:#68705f;--bg1:#fff7e0;--bg2:#f3e7c8;--input:#fffef9;--active:#dcebd8;--note:#fbf3d9}
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(1000px 500px at 50% -100px,#14532d,#04150d);color:var(--text)}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(1000px 500px at 50% -100px,var(--bg1),var(--bg2));color:var(--text)}
 header{text-align:center;padding:26px 16px 6px}
 .badge{display:inline-block;background:#7f1d1d;color:#fff;padding:4px 14px;border-radius:999px;font-size:13px}
 h1{color:var(--gold2);font-size:32px;margin:10px 0 4px}
 .sub{color:var(--muted);margin:0 0 6px;font-size:14px}
-.langbtn{background:transparent;border:1px solid var(--gold);color:var(--gold2);border-radius:8px;padding:5px 12px;cursor:pointer;margin-top:6px}
 main{max-width:780px;margin:0 auto;padding:10px 16px 30px}
+.settings{display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:14px}
+.settings label{margin:0;font-size:13px}
+.settings select{width:auto;padding:8px}
+.swatches{display:flex;gap:7px}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid transparent;cursor:pointer}
+.sw.on{border-color:var(--gold2);transform:scale(1.12)}
 .tabs{display:flex;gap:8px;margin:10px 0 14px}
-.tab{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);background:#07130c;color:var(--text);cursor:pointer;font-size:16px}
-.tab.active{border-color:var(--gold);background:#0b4a2e;color:var(--gold2)}
+.tab{flex:1;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--input);color:var(--text);cursor:pointer;font-size:16px}
+.tab.active{border-color:var(--gold);background:var(--active);color:var(--gold2)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
 .card h2{color:var(--gold);font-size:19px;margin:0 0 14px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:560px){.grid{grid-template-columns:1fr}}
 label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px}
-input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid var(--line);background:#07130c;color:var(--text);font-size:16px;font-family:inherit}
+input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid var(--line);background:var(--input);color:var(--text);font-size:16px;font-family:inherit}
 .purposes{display:flex;gap:8px;flex-wrap:wrap}
-.purpose{flex:1;min-width:130px;padding:10px;border-radius:9px;border:1px solid var(--line);background:#07130c;color:var(--text);cursor:pointer;font-size:14px}
-.purpose.active{border-color:var(--gold);background:#0b4a2e;color:var(--gold2)}
+.purpose{flex:1;min-width:130px;padding:10px;border-radius:9px;border:1px solid var(--line);background:var(--input);color:var(--text);cursor:pointer;font-size:14px}
+.purpose.active{border-color:var(--gold);background:var(--active);color:var(--gold2)}
 .checks{display:flex;gap:16px;flex-wrap:wrap}
 .checks label{display:flex;gap:6px;align-items:center;color:var(--text);font-size:15px}
 .checks input{width:auto}
@@ -53,162 +62,292 @@ input,select,textarea{width:100%;padding:11px;border-radius:9px;border:1px solid
 .rowbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 table{border-collapse:collapse;margin:10px auto}
 td{border:1px solid var(--gold);width:54px;height:54px;text-align:center;font-size:22px;color:var(--gold2)}
-pre{white-space:pre-wrap;word-break:break-all;background:#07130c;border:1px solid var(--line);border-radius:9px;padding:12px;font-size:14px;line-height:1.9;max-height:320px;overflow:auto}
+pre{white-space:pre-wrap;word-break:break-all;background:var(--input);border:1px solid var(--line);border-radius:9px;padding:12px;font-size:14px;line-height:1.9;max-height:320px;overflow:auto}
 .sum{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:15px}
-.sum div,.bd div{background:#07130c;border:1px solid var(--line);border-radius:9px;padding:10px}
+.sum div,.bd div{background:var(--input);border:1px solid var(--line);border-radius:9px;padding:10px}
 .sum b{color:var(--gold2)}
 .bd{display:grid;grid-template-columns:1fr;gap:8px;font-size:14px;line-height:2}
-.note{background:#132a1d;border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--muted)}
+.note{background:var(--note);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--muted)}
 .hidden{display:none}
 .hist{font-size:14px;line-height:1.8}
-.hist button{background:none;border:none;color:var(--gold2);cursor:pointer;text-align:right;font-size:14px;padding:2px 0}
+.hist button{background:none;border:none;color:var(--gold2);cursor:pointer;text-align:inherit;font-size:14px;padding:2px 0}
 .abjad td{width:auto;height:auto;font-size:15px;padding:5px 8px;color:var(--text)}
+.kbd{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.kbd button{width:40px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--input);color:var(--text);font-size:17px;cursor:pointer}
+.kbd button.wide{width:auto;padding:0 12px}
 footer{text-align:center;color:var(--muted);font-size:13px;padding:18px}
 a{color:var(--gold2)}
 .adlabel{text-align:center;font-size:11px;color:var(--muted)}
+#printArea{display:none}
+@media print{body{background:#fff}header,main,footer{display:none}#printArea{display:block;color:#000;font-family:Tahoma,Arial,sans-serif;padding:20px;white-space:pre-wrap}}
 </style>
 </head>
 <body>
 <header>
-<span class="badge">خصوصی — بالکل مفت · لائف ٹائم</span>
+<span class="badge" data-i="offer">خصوصی — بالکل مفت · لائف ٹائم</span>
 <h1>طلسم جفر جنریٹر</h1>
-<p class="sub">کلاسک جفر ترتیب، تکسیر اور سطرِ اساسی — ورژن 2</p>
+<p class="sub" data-i="appSub">کلاسک جفر ترتیب، تکسیر اور سطرِ اساسی — ورژن 3</p>
 <p class="sub">Talism Jafar Generator · Free · No Signup · Data stays in your browser</p>
-<button class="langbtn" id="langBtn">Roman / English</button>
 </header>
 <main>
-<div class="tabs">
-<button class="tab active" data-tab="jafar">🔯 جفر لوح و تکسیر</button>
-<button class="tab" data-tab="istikhara">🔮 آن لائن استخارہ</button>
-<button class="tab" data-tab="ilaj">🌿 روحانی علاج</button>
+<div class="settings">
+<div><label data-i="langLbl">زبان / Language</label>
+<select id="langSel">
+<option value="ur">اردو</option>
+<option value="roman">Roman Urdu</option>
+<option value="en">English</option>
+<option value="ar">العربية</option>
+<option value="hi">हिन्दी</option>
+</select></div>
+<div><label data-i="themeLbl">تھیم / Theme</label>
+<div class="swatches">
+<button class="sw on" data-theme-set="classic" title="Classic Green + Gold" style="background:linear-gradient(135deg,#14532d,#d4af37)"></button>
+<button class="sw" data-theme-set="blue" title="Professional Blue" style="background:linear-gradient(135deg,#1d4ed8,#60a5fa)"></button>
+<button class="sw" data-theme-set="purple" title="Royal Purple + Gold" style="background:linear-gradient(135deg,#581c87,#c084fc)"></button>
+<button class="sw" data-theme-set="noir" title="Amber Noir" style="background:linear-gradient(135deg,#000,#f59e0b)"></button>
+<button class="sw" data-theme-set="cream" title="Light Cream" style="background:linear-gradient(135deg,#fff7e0,#b8860b)"></button>
+</div></div>
+<div style="flex:1;min-width:150px"><label><span data-i="fontLbl">حروف کا سائز</span> A− / A+</label>
+<input type="range" id="fontRange" min="85" max="130" value="100" style="padding:0"></div>
 </div>
 
-<!-- JAFAR TAB -->
+<div class="tabs">
+<button class="tab active" data-tab="jafar" data-i="tabJafar">🔯 جفر لوح و تکسیر</button>
+<button class="tab" data-tab="istikhara" data-i="tabIst">🔮 آن لائن استخارہ</button>
+<button class="tab" data-tab="ilaj" data-i="tabIlaj">🌿 روحانی علاج</button>
+</div>
+
 <section id="tab-jafar">
 <div class="card">
-<h2 data-t="formTitle">📝 مداخل جفر کا اندراج کریں</h2>
+<h2 data-i="formTitle">📝 مداخل جفر کا اندراج کریں</h2>
 <div class="grid">
-<div><label>طالب کا نام</label><input id="talib" value="حسن"></div>
-<div><label>والدہ طالب کا نام</label><input id="talibMother" value="آمنہ"></div>
-<div><label>مطلوب کا نام</label><input id="matloob" value="زینب"></div>
-<div><label>والدہ مطلوب کا نام</label><input id="matloobMother" value="مریم"></div>
+<div><label data-i="talib">طالب کا نام</label><input id="talib" value="حسن"></div>
+<div><label data-i="talibM">والدہ طالب کا نام</label><input id="talibMother" value="آمنہ"></div>
+<div><label data-i="matloob">مطلوب کا نام</label><input id="matloob" value="زینب"></div>
+<div><label data-i="matloobM">والدہ مطلوب کا نام</label><input id="matloobMother" value="مریم"></div>
 </div>
-<h2 style="margin-top:18px">مقصدِ عمل کا انتخاب کریں</h2>
+<div class="rowbtns">
+<button class="btn2" id="kbBtn" data-i="kbBtn">⌨️ اردو کی بورڈ</button>
+<button class="btn2" id="exBtn" data-i="exBtn">مثال بھریں</button>
+<button class="btn2" id="clearBtn" data-i="clearBtn">صاف کریں</button>
+</div>
+<div class="kbd hidden" id="kbd"></div>
+<h2 style="margin-top:18px" data-i="profTitle">محفوظ پروفائل</h2>
+<div class="grid">
+<div><select id="profSel"><option value="">—</option></select></div>
+<div class="rowbtns" style="margin:0"><button class="btn2" id="profSave" data-i="profSave">موجودہ نام محفوظ کریں</button>
+<button class="btn2" id="profDel" data-i="profDel">پروفائل حذف کریں</button></div>
+</div>
+<h2 style="margin-top:18px" data-i="purposeTitle">مقصدِ عمل کا انتخاب کریں</h2>
 <div class="purposes" id="purposes">
-<button class="purpose active" data-p="تسخیر و محبت و کامیابی">❤️ تسخیر و محبت</button>
-<button class="purpose" data-p="عداوت و بغض کا خاتمہ">🤍 عداوت و بغض کا حل</button>
-<button class="purpose" data-p="روحانی علاج و کامیابی">🌿 روحانی علاج و کامیابی</button>
-<button class="purpose" data-p="رزق و کاروبار میں برکت و ترقی">💰 رزق و کاروبار</button>
-<button class="purpose" data-p="شادی کی بندش کا خاتمہ">💍 شادی کی بندش</button>
-<button class="purpose" data-p="بیماری سے شفا و صحت">🏥 بیماری سے شفا</button>
-<button class="purpose" data-p="دشمن سے حفاظت و امن">🛡️ دشمن سے حفاظت</button>
-<button class="purpose" data-p="سفر میں کامیابی و حفاظت">✈️ سفر میں کامیابی</button>
+<button class="purpose active" data-p="تسخیر و محبت و کامیابی" data-i="p1">❤️ تسخیر و محبت</button>
+<button class="purpose" data-p="عداوت و بغض کا خاتمہ" data-i="p2">🤍 عداوت و بغض کا حل</button>
+<button class="purpose" data-p="روحانی علاج و کامیابی" data-i="p3">🌿 روحانی علاج و کامیابی</button>
+<button class="purpose" data-p="رزق و کاروبار میں برکت و ترقی" data-i="p4">💰 رزق و کاروبار</button>
+<button class="purpose" data-p="شادی کی بندش کا خاتمہ" data-i="p5">💍 شادی کی بندش</button>
+<button class="purpose" data-p="بیماری سے شفا و صحت" data-i="p6">🏥 بیماری سے شفا</button>
+<button class="purpose" data-p="دشمن سے حفاظت و امن" data-i="p7">🛡️ دشمن سے حفاظت</button>
+<button class="purpose" data-p="سفر میں کامیابی و حفاظت" data-i="p8">✈️ سفر میں کامیابی</button>
 </div>
-<h2 style="margin-top:18px">تکسیر کا طریقہ</h2>
+<h2 style="margin-top:18px" data-i="taksTitle">تکسیر کا طریقہ</h2>
 <select id="takseerType">
-<option value="sadr">تکسیر صدر و مؤخر (Sadr-o-Muakhkhar) — پہلا + آخری حرف باری باری</option>
-<option value="muakhkhar">تکسیر مؤخر و صدر (Muakhkhar-o-Sadr) — آخری + پہلا حرف باری باری</option>
+<option value="sadr" data-i="mSadr">تکسیر صدر و مؤخر — پہلا + آخری حرف باری باری</option>
+<option value="muakhkhar" data-i="mMuakh">تکسیر مؤخر و صدر — آخری + پہلا حرف باری باری</option>
 </select>
-<h2 style="margin-top:18px">مدخل عددی حروف کی شمولیت (Extensions)</h2>
-<div class="checks">
-<label><input type="checkbox" checked> کبیر</label>
-<label><input type="checkbox" checked> وسط</label>
-<label><input type="checkbox" checked> صغیر</label>
+<div class="checks" style="margin-top:12px">
+<label><input type="checkbox" id="optTakhlees"> <span data-i="takhlees">تخلیص — دہرائے حروف ختم کریں</span></label>
+<label><input type="checkbox" id="optClean"> <span data-i="cleanOpt">صفائی — غیر ابجد حروف ہٹائیں</span></label>
 </div>
-<div style="margin-top:14px"><label>تکسیر کی زیادہ سے زیادہ سطریں: <span id="linesVal">20</span></label>
+<h2 style="margin-top:18px" data-i="extTitle">مدخل عددی حروف کی شمولیت (Extensions)</h2>
+<div class="checks">
+<label><input type="checkbox" checked> <span data-i="kab">کبیر</span></label>
+<label><input type="checkbox" checked> <span data-i="was">وسط</span></label>
+<label><input type="checkbox" checked> <span data-i="sag">صغیر</span></label>
+</div>
+<div style="margin-top:14px"><label><span data-i="linesLbl">تکسیر کی زیادہ سے زیادہ سطریں</span>: <span id="linesVal">20</span></label>
 <input type="range" id="maxLines" min="3" max="100" value="20" style="padding:0"></div>
-<h2 style="margin-top:18px">لوح کا سائز</h2>
-<select id="lohSize"><option value="3">لوح مثلث نما — 3 × 3</option><option value="4">لوح مربع — 4 × 4</option></select>
-<button class="btn" id="genBtn" style="margin-top:16px">✨ جفر تیار کریں</button>
+<h2 style="margin-top:18px" data-i="lohSizeTitle">لوح کا سائز</h2>
+<select id="lohSize"><option value="3" data-i="loh3">لوح — 3 × 3</option><option value="4" data-i="loh4">لوح — 4 × 4</option></select>
+<button class="btn" id="genBtn" style="margin-top:16px" data-i="genBtn">✨ جفر تیار کریں</button>
 </div>
 
 <div class="card hidden" id="resultCard">
-<h2>نتیجہ — ابجد گنتی (حرف بہ حرف)</h2>
+<h2 data-i="resTitle">نتیجہ — ابجد گنتی (حرف بہ حرف)</h2>
 <div class="bd" id="breakdown"></div>
 <div class="sum" id="sums" style="margin-top:10px"></div>
-<h2 style="margin-top:18px">سطرِ اساسی</h2>
+<div class="bd" id="mizaj" style="margin-top:10px"></div>
+<h2 style="margin-top:18px" data-i="baseLbl">سطرِ اساسی</h2>
 <pre id="baseLine"></pre>
-<h2 style="margin-top:18px">سطریںِ تکسیر</h2>
+<h2 style="margin-top:18px" data-i="rowsLbl">سطریںِ تکسیر</h2>
 <pre id="takseer"></pre>
 <h2 style="margin-top:18px;text-align:center" id="lohTitle">لوح</h2>
 <div id="loh"></div>
 <div class="rowbtns">
-<button class="btn2" id="pngBtn">🖼️ لوح کی تصویر ڈاؤن لوڈ (PNG)</button>
-<button class="btn2" id="copyBtn">📋 نتیجہ کاپی کریں</button>
-<button class="btn2" id="dlBtn">⬇️ ڈاؤن لوڈ (TXT)</button>
-<a class="btn2" id="waShare" target="_blank" rel="noopener">💬 واٹس ایپ شیئر</a>
+<button class="btn2" id="pngBtn" data-i="pngBtn">🖼️ لوح PNG</button>
+<button class="btn2" id="cardBtn" data-i="cardBtn">🎴 مکمل نتیجہ کارڈ PNG</button>
+<button class="btn2" id="printBtn" data-i="printBtn">🖨️ پرنٹ / PDF</button>
+<button class="btn2" id="copyBtn" data-i="copyBtn">📋 کاپی کریں</button>
+<button class="btn2" id="dlBtn" data-i="dlBtn">⬇️ TXT</button>
+<a class="btn2" id="waShare" target="_blank" rel="noopener" data-i="waBtn">💬 واٹس ایپ شیئر</a>
 </div>
 <p class="sub" id="copyMsg"></p>
 </div>
 
-<div class="card hidden" id="histCard"><h2>⏱️ آپ کے پچھلے نتائج (اسی موبائل میں محفوظ)</h2><div class="hist" id="hist"></div></div>
+<div class="card hidden" id="histCard"><h2 data-i="histTitle">⏱️ آپ کے پچھلے نتائج (اسی موبائل میں محفوظ)</h2><div class="hist" id="hist"></div></div>
 <div class="adlabel">Advertisement — اشتہار</div>
 <div id="adSlot"><script async="async" data-cfasync="false" src="https://bauval.org/21/345a3a134f2bfb36545ac7c7d5a7f029"></script><div id="container-345a3a134f2bfb36545ac7c7d5a7f029"></div></div>
 </section>
 
-<!-- ISTIKHARA TAB -->
 <section id="tab-istikhara" class="hidden">
 <div class="card">
-<h2>مستحصلہ قرآنی — استخارہ</h2>
+<h2 data-i="istTitle">مستحصلہ قرآنی — استخارہ</h2>
+<div data-content="ur">
 <p class="sub">یہ طریقہ مرحوم بابر سلطان قادری کے مستحصلہِ قرآنی کے مطابق ہے: سوال کی بسطِ حرفی کے ابجدِ قمری اعداد کو پہلے 114 (سورتوں کی تعداد) پر، پھر منتخب سورۃ کی آیات کی تعداد پر تقسیم کیا جاتا ہے — باقی بچنے والے نمبر سے متعلقہ سورۃ اور آیت نکلتی ہے۔ آیت خیر کی ہو تو جواب مثبت، وعید/عذاب کا ذکر ہو تو احتیاط۔</p>
-<label>آپ کا نام</label><input id="istName" placeholder="نام">
-<label style="margin-top:10px">والدہ کا نام</label><input id="istMother" placeholder="والدہ کا نام">
-<label style="margin-top:10px">آپ کا سوال (ایک ہی بات، سادہ الفاظ میں)</label>
-<textarea id="istQuestion" rows="3" placeholder="مثال: فلاں کام کرنا بہتر ہے یا نہیں"></textarea>
-<button class="btn" id="istBtn" style="margin-top:14px">🔮 استخارہ کریں</button>
+</div>
+<div data-content="en" class="hidden">
+<p class="sub">The published Mustahsila-e-Qurani method (Babar Sultan Qadri): the question's Abjad-e-Qamri total is divided by 114 (number of Surahs) for the Surah, then by that Surah's ayat count for the Ayat. A verse of mercy/good news = positive sign; a verse of warning = caution.</p>
+</div>
+<label data-i="istName">آپ کا نام</label><input id="istName">
+<label style="margin-top:10px" data-i="istMother">والدہ کا نام</label><input id="istMother">
+<label style="margin-top:10px" data-i="istQ">آپ کا سوال (ایک ہی بات، سادہ الفاظ میں)</label>
+<textarea id="istQuestion" rows="3"></textarea>
+<button class="btn" id="istBtn" style="margin-top:14px" data-i="istBtn">🔮 استخارہ کریں</button>
 <div id="istResult" style="margin-top:14px"></div>
 </div>
 </section>
 
-<!-- ILAJ TAB -->
 <section id="tab-ilaj" class="hidden">
 <div class="card">
-<h2>روحانی علاج — عمومی رہنمائی</h2>
+<h2 data-i="wazifaTitle">🗓️ آج کا وظیفہ</h2>
+<div id="dailyWazifa"></div>
+</div>
+<div class="card">
+<h2 data-i="ilajTitle">روحانی علاج — عمومی رہنمائی</h2>
+<div data-content="ur">
 <p>یہ عمومی روایتی رہنمائی ہے — بیماری کی صورت میں ڈاکٹر سے علاج ہرگز نہ چھوڑیں۔</p>
 <p><b>ہر مقصد کے لیے:</b> با وضو ہو کر درود شریف 11 بار، پھر سورۃ الفاتحہ 41 بار، آخر میں پھر درود شریف — پانی پر دم کر کے پینا روایتی عمل ہے۔</p>
 <p><b>حفاظت کے لیے:</b> آیت الکرسی صبح و شام 7 بار پڑھ کر اپنے اوپر دم کریں۔</p>
 <p><b>رزق کے لیے:</b> سورۃ الواقعہ مغرب کے بعد باقاعدگی سے پڑھنا معروف روایتی عمل ہے۔</p>
 <p><b>بے چینی/گھبراہٹ کے لیے:</b> سورۃ الشرح (الم نشرح) 11 بار اور استغفار کی کثرت۔</p>
-<p class="note">نوٹ: یہ ٹول روایتی/روحانی رہنمائی کے لیے ہے، کسی نتیجے کی ضمانت نہیں دیتا۔ اہم فیصلوں میں استخارہ، مشورہ اور عملی کوشش — تینوں ساتھ رکھیں۔</p>
+</div>
+<div data-content="en" class="hidden">
+<p>General traditional guidance only — never stop medical treatment for an illness.</p>
+<p><b>For any purpose:</b> with wudu, Darood Sharif 11 times, then Surah Al-Fatiha 41 times, then Darood again — traditionally blown on water to drink.</p>
+<p><b>For protection:</b> Ayat-ul-Kursi 7 times morning and evening.</p>
+<p><b>For rizq:</b> Surah Al-Waqi'ah regularly after Maghrib is a well-known traditional practice.</p>
+<p><b>For anxiety:</b> Surah Ash-Sharh 11 times and abundant Istighfar.</p>
+</div>
+<p class="note" data-i="discNote">نوٹ: یہ ٹول روایتی/روحانی رہنمائی کے لیے ہے، کسی نتیجے کی ضمانت نہیں دیتا۔ اہم فیصلوں میں استخارہ، مشورہ اور عملی کوشش — تینوں ساتھ رکھیں۔</p>
 </div>
 </section>
 
 <div class="card">
-<h2>جفر کیا ہے؟ — مکمل رہنمائی</h2>
+<h2 data-i="guideTitle">جفر کیا ہے؟ — مکمل رہنمائی</h2>
+<div data-content="ur">
 <p>علمِ جفر ایک قدیم روحانی علم ہے جس میں حروف کے ابجدِ قمری اعداد سے ناموں اور مقصد کی سطر بنائی جاتی ہے، پھر تکسیر کے قواعد سے سطریں اور لوح (عددی نقش) تیار ہوتا ہے۔ اس ٹول میں تکسیر کے دو مستند طریقے — <b>صدر و مؤخر</b> اور <b>مؤخر و صدر</b> — شامل ہیں (حوالہ: تکسیرِ جفر پر شائع شدہ قواعد، KazSoft Takseer-e-Jafar Manual؛ مستحصلہِ قرآنی: روحانی علوم، بابر سلطان قادری)۔ ابو الحسن (روحانی مفتی) کی کتابی ترتیب کا مکمل خصوصی طریقہ اس ورژن میں شامل نہیں — وہی سطرِ اساسی کا انداز یہاں خودکار کیا گیا ہے۔</p>
-<h2 style="margin-top:16px">ابجدِ قمری جدول</h2>
+</div>
+<div data-content="en" class="hidden">
+<p>Ilm-e-Jafar is a classical discipline that builds a base line from names and purpose using Abjad-e-Qamri numbers, then derives Takseer rows and a numeric Loh. This tool includes the two published Takseer types — <b>Sadr-o-Muakhkhar</b> and <b>Muakhkhar-o-Sadr</b> (source: published Takseer-e-Jafar rules, KazSoft manual; Mustahsila-e-Qurani: RoohaniAloom, Babar Sultan Qadri). The specific book arrangement of Abu Al-Hasan (Rohani Mufti) is not reproduced; the Satr-e-Asasi style is automated here. Full text of this guide is in Urdu and English; the complete interface is available in all 5 languages.</p>
+</div>
+<h2 style="margin-top:16px" data-i="abjadTitle">ابجدِ قمری جدول</h2>
 <div id="abjadTable"></div>
-<h2 style="margin-top:16px">اکثر سوالات</h2>
+<h2 style="margin-top:16px" data-i="faqTitle">اکثر سوالات</h2>
+<div data-content="ur">
 <p><b>کیا یہ مفت ہے؟</b> جی ہاں — لائف ٹائم مفت، کوئی سائن اپ نہیں، نام کہیں اپ لوڈ نہیں ہوتے۔</p>
-<p><b>نتیجہ کیسے محفوظ کروں؟</b> لوح کی PNG تصویر، TXT فائل، یا کاپی بٹن — اور پچھلے نتائج خود اسی موبائل میں محفوظ رہتے ہیں۔</p>
+<p><b>نتیجہ کیسے محفوظ کروں؟</b> لوح کی PNG تصویر، مکمل کارڈ، پرنٹ/PDF، TXT یا کاپی — اور پچھلے نتائج خود اسی موبائل میں محفوظ رہتے ہیں۔</p>
+</div>
+<div data-content="en" class="hidden">
+<p><b>Is it free?</b> Yes — lifetime free, no signup, names are never uploaded.</p>
+<p><b>How do I save a result?</b> Loh PNG, full result card, Print/PDF, TXT or Copy — and recent results auto-save on this device.</p>
+</div>
 </div>
 </main>
-<footer>طلسم جفر جنریٹر v2 — Farrakh Tools · روایتی روحانی رہنمائی کے لیے، کسی نتیجے کی ضمانت نہیں · <a href="poster.html">اشتہاری پوسٹر دیکھیں</a><br><img src="https://hits.sh/farrakhimtiaz74.github.io/talism-jafar-generator.svg" alt="Visitor counter" onerror="this.style.display='none'" style="margin-top:8px"></footer>
+<footer>طلسم جفر جنریٹر v3 — Farrakh Tools · <span data-i="footNote">روایتی روحانی رہنمائی کے لیے، کسی نتیجے کی ضمانت نہیں</span> · <a href="poster.html" data-i="posterLink">اشتہاری پوسٹر دیکھیں</a> · <a href="https://getfarrakhtools.wordpress.com/contact/" data-i="contactLink">غلطی کی اطلاع / رابطہ</a><br><img src="https://hits.sh/farrakhimtiaz74.github.io/talism-jafar-generator.svg" alt="Visitor counter" onerror="this.style.display='none'" style="margin-top:8px"></footer>
+<div id="printArea"></div>
 <script>
 var ABJAD={'ا':1,'آ':1,'ب':2,'ج':3,'د':4,'ه':5,'ہ':5,'و':6,'ز':7,'ح':8,'ط':9,'ي':10,'ی':10,'ك':20,'ک':20,'ل':30,'م':40,'ن':50,'س':60,'ع':70,'ف':80,'ص':90,'ق':100,'ر':200,'ش':300,'ت':400,'ث':500,'خ':600,'ذ':700,'ض':800,'ظ':900,'غ':1000,'ة':5,'ء':1,'ؤ':6,'ئ':10,'ں':50,'گ':20,'چ':3,'پ':2,'ٹ':400,'ڈ':4,'ڑ':200,'ے':10};
 var AYAT=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
 var SURAHS=["Al-Fatiha","Al-Baqarah","Aal-e-Imran","An-Nisa","Al-Ma'idah","Al-An'am","Al-A'raf","Al-Anfal","At-Taubah","Yunus","Hud","Yusuf","Ar-Ra'd","Ibrahim","Al-Hijr","An-Nahl","Al-Isra","Al-Kahf","Maryam","Ta-Ha","Al-Anbiya","Al-Hajj","Al-Mu'minun","An-Nur","Al-Furqan","Ash-Shu'ara","An-Naml","Al-Qasas","Al-Ankabut","Ar-Rum","Luqman","As-Sajdah","Al-Ahzab","Saba","Fatir","Ya-Sin","As-Saffat","Sad","Az-Zumar","Ghafir","Fussilat","Ash-Shura","Az-Zukhruf","Ad-Dukhan","Al-Jathiyah","Al-Ahqaf","Muhammad","Al-Fath","Al-Hujurat","Qaf","Adh-Dhariyat","At-Tur","An-Najm","Al-Qamar","Ar-Rahman","Al-Waqi'ah","Al-Hadid","Al-Mujadila","Al-Hashr","Al-Mumtahanah","As-Saff","Al-Jumu'ah","Al-Munafiqun","At-Taghabun","At-Talaq","At-Tahrim","Al-Mulk","Al-Qalam","Al-Haqqah","Al-Ma'arij","Nuh","Al-Jinn","Al-Muzzammil","Al-Muddaththir","Al-Qiyamah","Al-Insan","Al-Mursalat","An-Naba","An-Nazi'at","Abasa","At-Takwir","Al-Infitar","Al-Mutaffifin","Al-Inshiqaq","Al-Buruj","At-Tariq","Al-A'la","Al-Ghashiyah","Al-Fajr","Al-Balad","Ash-Shams","Al-Lail","Ad-Duha","Ash-Sharh","At-Tin","Al-Alaq","Al-Qadr","Al-Bayyinah","Az-Zalzalah","Al-Adiyat","Al-Qari'ah","At-Takathur","Al-Asr","Al-Humazah","Al-Fil","Quraish","Al-Ma'un","Al-Kauthar","Al-Kafirun","An-Nasr","Al-Masad","Al-Ikhlas","Al-Falaq","An-Nas"];
+var ELEM={'ا':'fire','آ':'fire','ہ':'fire','ه':'fire','ط':'fire','م':'fire','ف':'fire','ش':'fire','ذ':'fire','ب':'air','پ':'air','ی':'air','ي':'air','ن':'air','ں':'air','ص':'air','ت':'air','ٹ':'air','ض':'air','و':'air','ے':'air','ج':'water','چ':'water','ز':'water','ک':'water','ك':'water','گ':'water','س':'water','ق':'water','ث':'water','ظ':'water','د':'earth','ڈ':'earth','ح':'earth','ل':'earth','ع':'earth','ر':'earth','ڑ':'earth','خ':'earth','غ':'earth'};
+var I18N={
+ur:{offer:'خصوصی — بالکل مفت · لائف ٹائم',appSub:'کلاسک جفر ترتیب، تکسیر اور سطرِ اساسی — ورژن 3',langLbl:'زبان / Language',themeLbl:'تھیم / Theme',fontLbl:'حروف کا سائز',tabJafar:'🔯 جفر لوح و تکسیر',tabIst:'🔮 آن لائن استخارہ',tabIlaj:'🌿 روحانی علاج',formTitle:'📝 مداخل جفر کا اندراج کریں',talib:'طالب کا نام',talibM:'والدہ طالب کا نام',matloob:'مطلوب کا نام',matloobM:'والدہ مطلوب کا نام',kbBtn:'⌨️ اردو کی بورڈ',exBtn:'مثال بھریں',clearBtn:'صاف کریں',profTitle:'محفوظ پروفائل',profSave:'موجودہ نام محفوظ کریں',profDel:'پروفائل حذف کریں',purposeTitle:'مقصدِ عمل کا انتخاب کریں',p1:'❤️ تسخیر و محبت',p2:'🤍 عداوت و بغض کا حل',p3:'🌿 روحانی علاج و کامیابی',p4:'💰 رزق و کاروبار',p5:'💍 شادی کی بندش',p6:'🏥 بیماری سے شفا',p7:'🛡️ دشمن سے حفاظت',p8:'✈️ سفر میں کامیابی',taksTitle:'تکسیر کا طریقہ',mSadr:'تکسیر صدر و مؤخر — پہلا + آخری حرف باری باری',mMuakh:'تکسیر مؤخر و صدر — آخری + پہلا حرف باری باری',takhlees:'تخلیص — دہرائے حروف ختم کریں',cleanOpt:'صفائی — غیر ابجد حروف ہٹائیں',extTitle:'مدخل عددی حروف کی شمولیت (Extensions)',kab:'کبیر',was:'وسط',sag:'صغیر',linesLbl:'تکسیر کی زیادہ سے زیادہ سطریں',lohSizeTitle:'لوح کا سائز',loh3:'لوح — 3 × 3',loh4:'لوح — 4 × 4',genBtn:'✨ جفر تیار کریں',resTitle:'نتیجہ — ابجد گنتی (حرف بہ حرف)',baseLbl:'سطرِ اساسی',rowsLbl:'سطریںِ تکسیر',pngBtn:'🖼️ لوح PNG',cardBtn:'🎴 مکمل نتیجہ کارڈ PNG',printBtn:'🖨️ پرنٹ / PDF',copyBtn:'📋 کاپی کریں',dlBtn:'⬇️ TXT',waBtn:'💬 واٹس ایپ شیئر',histTitle:'⏱️ آپ کے پچھلے نتائج (اسی موبائل میں محفوظ)',istTitle:'مستحصلہ قرآنی — استخارہ',istName:'آپ کا نام',istMother:'والدہ کا نام',istQ:'آپ کا سوال (ایک ہی بات، سادہ الفاظ میں)',istBtn:'🔮 استخارہ کریں',wazifaTitle:'🗓️ آج کا وظیفہ',ilajTitle:'روحانی علاج — عمومی رہنمائی',discNote:'نوٹ: یہ ٹول روایتی/روحانی رہنمائی کے لیے ہے، کسی نتیجے کی ضمانت نہیں دیتا۔ اہم فیصلوں میں استخارہ، مشورہ اور عملی کوشش — تینوں ساتھ رکھیں۔',guideTitle:'جفر کیا ہے؟ — مکمل رہنمائی',abjadTitle:'ابجدِ قمری جدول',faqTitle:'اکثر سوالات',footNote:'روایتی روحانی رہنمائی کے لیے، کسی نتیجے کی ضمانت نہیں',posterLink:'اشتہاری پوسٹر دیکھیں',contactLink:'غلطی کی اطلاع / رابطہ',totalLbl:'کل مجموعہ',methodLbl:'طریقہ',lohWord:'لوح',copiedMsg:'کاپی ہوگیا ✓',alertNames:'براہ کرم طالب اور مطلوب کا نام لکھیں',alertIst:'براہ کرم نام اور سوال لکھیں',istTotal:'سوال کے کل اعداد',istSurah:'سورۃ نمبر',istAyatCount:'اس سورۃ کی آیات',istAyat:'متعلقہ آیت نمبر',mizajLbl:'ناموں کا مزاج (روایتی)',fire:'آتشی',air:'بادی',water:'آبی',earth:'خاکی',profPrompt:'پروفائل کا نام لکھیں:',rowSumLbl:'ہر قطار و کالم کا مجموعہ',charsLbl:'حروف'},
+roman:{offer:'Khasusi — Bilkul Muft · Lifetime',appSub:'Classic Jafar tarteeb, Takseer aur Satr-e-Asasi — Version 3',langLbl:'Zabaan / Language',themeLbl:'Theme',fontLbl:'Harf ka size',tabJafar:'🔯 Jafar Loh o Takseer',tabIst:'🔮 Online Istikhara',tabIlaj:'🌿 Rohani Ilaj',formTitle:'📝 Naam darj karein',talib:'Talib ka naam',talibM:'Walida Talib ka naam',matloob:'Matloob ka naam',matloobM:'Walida Matloob ka naam',kbBtn:'⌨️ Urdu Keyboard',exBtn:'Misaal bharein',clearBtn:'Saaf karein',profTitle:'Saved Profiles',profSave:'Yeh naam save karein',profDel:'Profile delete karein',purposeTitle:'Maqsad-e-Amal chunein',p1:'❤️ Taskheer o Muhabbat',p2:'🤍 Adawat o Bughz ka hal',p3:'🌿 Rohani Ilaj o Kamyabi',p4:'💰 Rizq o Karobar',p5:'💍 Shadi ki bandish',p6:'🏥 Bimari se shifa',p7:'🛡️ Dushman se hifazat',p8:'✈️ Safar mein kamyabi',taksTitle:'Takseer ka tareeqa',mSadr:'Takseer Sadr-o-Muakhkhar — pehla + aakhri harf bari bari',mMuakh:'Takseer Muakhkhar-o-Sadr — aakhri + pehla harf bari bari',takhlees:'Takhlees — dohraye haroof khatam karein',cleanOpt:'Safai — ghair-Abjad haroof hatayein',extTitle:'Extensions (Kabeer / Wast / Sagheer)',kab:'Kabeer',was:'Wast',sag:'Sagheer',linesLbl:'Takseer ki zyada se zyada satrain',lohSizeTitle:'Loh ka size',loh3:'Loh — 3 × 3',loh4:'Loh — 4 × 4',genBtn:'✨ Jafar Tayyar Karein',resTitle:'Nateeja — Abjad ginti (harf ba harf)',baseLbl:'Satr-e-Asasi',rowsLbl:'Takseer ki satrain',pngBtn:'🖼️ Loh PNG',cardBtn:'🎴 Full Nateeja Card PNG',printBtn:'🖨️ Print / PDF',copyBtn:'📋 Copy karein',dlBtn:'⬇️ TXT',waBtn:'💬 WhatsApp Share',histTitle:'⏱️ Aap ke pichle nataij (isi mobile mein saved)',istTitle:'Mustahsila-e-Qurani — Istikhara',istName:'Aap ka naam',istMother:'Walida ka naam',istQ:'Aap ka sawal (aik hi baat, saada alfaz mein)',istBtn:'🔮 Istikhara Karein',wazifaTitle:'🗓️ Aaj ka Wazifa',ilajTitle:'Rohani Ilaj — General Rehnumai',discNote:'Note: yeh tool sirf riwayati/rohani rehnumai ke liye hai, kisi nateejay ki zamanat nahi. Ahem faislon mein istikhara, mashwara aur amli koshish — teeno saath rakhein.',guideTitle:'Jafar kya hai? — Mukammal Rehnumai',abjadTitle:'Abjad-e-Qamri Table',faqTitle:'Aksar Sawalat',footNote:'Riwayati rohani rehnumai ke liye, kisi nateejay ki zamanat nahi',posterLink:'Poster dekhein',contactLink:'Error report / Rabta',totalLbl:'Kul Majmua',methodLbl:'Tareeqa',lohWord:'Loh',copiedMsg:'Copy ho gaya ✓',alertNames:'Barah-e-karam Talib aur Matloob ka naam likhein',alertIst:'Barah-e-karam naam aur sawal likhein',istTotal:'Sawal ke kul adaad',istSurah:'Surah number',istAyatCount:'Is Surah ki ayaat',istAyat:'Mutaliqa Aayat number',mizajLbl:'Naamon ka Mizaj (riwayati)',fire:'Atishi (Aag)',air:'Baadi (Hawa)',water:'Aabi (Pani)',earth:'Khaaki (Mitti)',profPrompt:'Profile ka naam likhein:',rowSumLbl:'Har qatar o column ka majmua',charsLbl:'Haroof'},
+en:{offer:'Special — Completely Free · Lifetime',appSub:'Classic Jafar arrangement, Takseer and base line — Version 3',langLbl:'Language',themeLbl:'Theme',fontLbl:'Font size',tabJafar:'🔯 Jafar Loh & Takseer',tabIst:'🔮 Online Istikhara',tabIlaj:'🌿 Spiritual Healing',formTitle:'📝 Enter the Names',talib:'Name of Talib (seeker)',talibM:"Talib's mother's name",matloob:'Name of Matloob (desired one)',matloobM:"Matloob's mother's name",kbBtn:'⌨️ Urdu Keyboard',exBtn:'Fill Example',clearBtn:'Clear',profTitle:'Saved Profiles',profSave:'Save current names',profDel:'Delete profile',purposeTitle:'Select the Purpose',p1:'❤️ Love & Attraction',p2:'🤍 Removing Hate & Enmity',p3:'🌿 Healing & Success',p4:'💰 Rizq & Business',p5:'💍 Marriage Blockage',p6:'🏥 Recovery from Illness',p7:'🛡️ Protection from Enemies',p8:'✈️ Success in Travel',taksTitle:'Takseer Method',mSadr:'Takseer Sadr-o-Muakhkhar — first + last letter alternately',mMuakh:'Takseer Muakhkhar-o-Sadr — last + first letter alternately',takhlees:'Takhlees — remove repeated letters',cleanOpt:'Clean — remove non-Abjad letters',extTitle:'Extensions',kab:'Kabeer',was:'Wast',sag:'Sagheer',linesLbl:'Maximum Takseer lines',lohSizeTitle:'Loh Size',loh3:'Loh — 3 × 3',loh4:'Loh — 4 × 4',genBtn:'✨ Generate Jafar',resTitle:'Result — Abjad Count (letter by letter)',baseLbl:'Base Line (Satr-e-Asasi)',rowsLbl:'Takseer Rows',pngBtn:'🖼️ Loh PNG',cardBtn:'🎴 Full Result Card PNG',printBtn:'🖨️ Print / PDF',copyBtn:'📋 Copy',dlBtn:'⬇️ TXT',waBtn:'💬 WhatsApp Share',histTitle:'⏱️ Your recent results (saved on this device)',istTitle:'Mustahsila-e-Qurani — Istikhara',istName:'Your name',istMother:"Mother's name",istQ:'Your question (one thing, in simple words)',istBtn:'🔮 Do Istikhara',wazifaTitle:"🗓️ Today's Wazifa",ilajTitle:'Spiritual Healing — General Guidance',discNote:'Note: this tool is for traditional/spiritual guidance only and guarantees no result. For important decisions combine istikhara, advice and real effort.',guideTitle:'What is Jafar? — Full Guide',abjadTitle:'Abjad-e-Qamri Table',faqTitle:'Frequently Asked Questions',footNote:'For traditional spiritual guidance only, no result is guaranteed',posterLink:'See the poster',contactLink:'Report an error / Contact',totalLbl:'Grand Total',methodLbl:'Method',lohWord:'Loh',copiedMsg:'Copied ✓',alertNames:'Please enter the Talib and Matloob names',alertIst:'Please enter your name and question',istTotal:'Total of the question',istSurah:'Surah number',istAyatCount:'Ayat in this Surah',istAyat:'Relevant Ayat number',mizajLbl:'Temperament of the names (traditional)',fire:'Fire',air:'Air',water:'Water',earth:'Earth',profPrompt:'Enter a profile name:',rowSumLbl:'Each row & column sums to',charsLbl:'letters'},
+ar:{offer:'عرض خاص — مجاني بالكامل · مدى الحياة',appSub:'الترتيب الكلاسيكي للجفر والتكسير والسطر الأساسي — الإصدار 3',langLbl:'اللغة',themeLbl:'المظهر',fontLbl:'حجم الخط',tabJafar:'🔯 لوح الجفر والتكسير',tabIst:'🔮 الاستخارة عبر الإنترنت',tabIlaj:'🌿 العلاج الروحاني',formTitle:'📝 أدخل الأسماء',talib:'اسم الطالب',talibM:'اسم والدة الطالب',matloob:'اسم المطلوب',matloobM:'اسم والدة المطلوب',kbBtn:'⌨️ لوحة المفاتيح الأردية',exBtn:'املأ مثالاً',clearBtn:'مسح',profTitle:'الملفات المحفوظة',profSave:'حفظ الأسماء الحالية',profDel:'حذف الملف',purposeTitle:'اختر غرض العمل',p1:'❤️ التسخير والمحبة',p2:'🤍 إزالة العداوة والبغض',p3:'🌿 العلاج الروحاني والنجاح',p4:'💰 الرزق والتجارة',p5:'💍 فك عقدة الزواج',p6:'🏥 الشفاء من المرض',p7:'🛡️ الحماية من الأعداء',p8:'✈️ النجاح في السفر',taksTitle:'طريقة التكسير',mSadr:'تكسير صدر ومؤخر — الحرف الأول والأخير بالتناوب',mMuakh:'تكسير مؤخر وصدر — الحرف الأخير والأول بالتناوب',takhlees:'التخليص — حذف الحروف المكررة',cleanOpt:'التنظيف — حذف الحروف غير الأبجدية',extTitle:'الإضافات',kab:'كبير',was:'وسط',sag:'صغير',linesLbl:'أقصى عدد لسطور التكسير',lohSizeTitle:'حجم اللوح',loh3:'لوح — 3 × 3',loh4:'لوح — 4 × 4',genBtn:'✨ إنشاء الجفر',resTitle:'النتيجة — عد الأبجد (حرفاً بحرف)',baseLbl:'السطر الأساسي',rowsLbl:'سطور التكسير',pngBtn:'🖼️ صورة اللوح PNG',cardBtn:'🎴 بطاقة النتيجة الكاملة PNG',printBtn:'🖨️ طباعة / PDF',copyBtn:'📋 نسخ',dlBtn:'⬇️ TXT',waBtn:'💬 مشاركة واتساب',histTitle:'⏱️ نتائجك الأخيرة (محفوظة على هذا الجهاز)',istTitle:'المستحصلة القرآنية — استخارة',istName:'اسمك',istMother:'اسم الوالدة',istQ:'سؤالك (أمر واحد، بكلمات بسيطة)',istBtn:'🔮 اعمل الاستخارة',wazifaTitle:'🗓️ وظيفة اليوم',ilajTitle:'العلاج الروحاني — إرشاد عام',discNote:'ملاحظة: هذه الأداة للإرشاد التقليدي/الروحاني فقط ولا تضمن أي نتيجة.',guideTitle:'ما هو الجفر؟ — الدليل الكامل',abjadTitle:'جدول الأبجد القمري',faqTitle:'الأسئلة الشائعة',footNote:'للإرشاد الروحاني التقليدي فقط، لا ضمان لأي نتيجة',posterLink:'شاهد الملصق',contactLink:'الإبلاغ عن خطأ / اتصال',totalLbl:'المجموع الكلي',methodLbl:'الطريقة',lohWord:'لوح',copiedMsg:'تم النسخ ✓',alertNames:'يرجى إدخال اسمي الطالب والمطلوب',alertIst:'يرجى إدخال الاسم والسؤال',istTotal:'مجموع السؤال',istSurah:'رقم السورة',istAyatCount:'آيات هذه السورة',istAyat:'رقم الآية ذات الصلة',mizajLbl:'مزاج الأسماء (تقليدي)',fire:'ناري',air:'هوائي',water:'مائي',earth:'ترابي',profPrompt:'أدخل اسم الملف:',rowSumLbl:'مجموع كل صف وعمود',charsLbl:'حرفاً'},
+hi:{offer:'विशेष — बिल्कुल मुफ़्त · लाइफ़टाइम',appSub:'क्लासिक जफ़र तरतीब, तकसीर और सत्र-ए-असासी — वर्शन 3',langLbl:'भाषा',themeLbl:'थीम',fontLbl:'अक्षरों का आकार',tabJafar:'🔯 जफ़र लोह व तकसीर',tabIst:'🔮 ऑनलाइन इस्तिख़ारा',tabIlaj:'🌿 रूहानी इलाज',formTitle:'📝 नाम दर्ज करें',talib:'तालिब का नाम',talibM:'वालिदा तालिब का नाम',matloob:'मतलूब का नाम',matloobM:'वालिदा मतलूब का नाम',kbBtn:'⌨️ उर्दू कीबोर्ड',exBtn:'उदाहरण भरें',clearBtn:'साफ़ करें',profTitle:'सेव्ड प्रोफ़ाइल',profSave:'मौजूदा नाम सेव करें',profDel:'प्रोफ़ाइल हटाएँ',purposeTitle:'मक़सद चुनें',p1:'❤️ तस्ख़ीर व मुहब्बत',p2:'🤍 अदावत व बुग़्ज़ का हल',p3:'🌿 रूहानी इलाज व कामयाबी',p4:'💰 रिज़्क़ व कारोबार',p5:'💍 शादी की बंदिश',p6:'🏥 बीमारी से शिफ़ा',p7:'🛡️ दुश्मन से हिफ़ाज़त',p8:'✈️ सफ़र में कामयाबी',taksTitle:'तकसीर का तरीक़ा',mSadr:'तकसीर सदर-ओ-मुअख्ख़र — पहला + आख़िरी हर्फ़ बारी-बारी',mMuakh:'तकसीर मुअख्ख़र-ओ-सदर — आख़िरी + पहला हर्फ़ बारी-बारी',takhlees:'तख़लीस — दोहराए हर्फ़ हटाएँ',cleanOpt:'सफ़ाई — गैर-अबजद हर्फ़ हटाएँ',extTitle:'एक्सटेंशन',kab:'कबीर',was:'वस्त',sag:'सग़ीर',linesLbl:'तकसीर की ज़्यादा से ज़्यादा सतरें',lohSizeTitle:'लोह का साइज़',loh3:'लोह — 3 × 3',loh4:'लोह — 4 × 4',genBtn:'✨ जफ़र तैयार करें',resTitle:'नतीजा — अबजद गिनती (हर्फ़-ब-हर्फ़)',baseLbl:'सत्र-ए-असासी',rowsLbl:'तकसीर की सतरें',pngBtn:'🖼️ लोह PNG',cardBtn:'🎴 पूरा नतीजा कार्ड PNG',printBtn:'🖨️ प्रिंट / PDF',copyBtn:'📋 कॉपी करें',dlBtn:'⬇️ TXT',waBtn:'💬 WhatsApp शेयर',histTitle:'⏱️ आपके पिछले नतीजे (इसी मोबाइल में सेव्ड)',istTitle:'मुस्तहसिला-ए-क़ुरआनी — इस्तिख़ारा',istName:'आपका नाम',istMother:'वालिदा का नाम',istQ:'आपका सवाल (एक ही बात, आसान शब्दों में)',istBtn:'🔮 इस्तिख़ारा करें',wazifaTitle:'🗓️ आज का वज़ीफ़ा',ilajTitle:'रूहानी इलाज — आम रहनुमाई',discNote:'नोट: यह टूल सिर्फ़ रिवायती/रूहानी रहनुमाई के लिए है, किसी नतीजे की गारंटी नहीं.',guideTitle:'जफ़र क्या है? — पूरी रहनुमाई',abjadTitle:'अबजद-ए-क़मरी टेबल',faqTitle:'आम सवाल',footNote:'सिर्फ़ रिवायती रूहानी रहनुमाई के लिए, कोई गारंटी नहीं',posterLink:'पोस्टर देखें',contactLink:'ग़लती रिपोर्ट / संपर्क',totalLbl:'कुल मजमुआ',methodLbl:'तरीक़ा',lohWord:'लोह',copiedMsg:'कॉपी हो गया ✓',alertNames:'कृपया तालिब और मतलूब का नाम लिखें',alertIst:'कृपया नाम और सवाल लिखें',istTotal:'सवाल का कुल अदद',istSurah:'सूरह नंबर',istAyatCount:'इस सूरह की आयात',istAyat:'मुताल्लिक़ा आयत नंबर',mizajLbl:'नामों का मिज़ाज (रिवायती)',fire:'आतिशी (आग)',air:'बादी (हवा)',water:'आबी (पानी)',earth:'ख़ाकी (मिट्टी)',profPrompt:'प्रोफ़ाइल का नाम लिखें:',rowSumLbl:'हर क़तार व कॉलम का मजमुआ',charsLbl:'हर्फ़'}
+};
+var LANG='ur';
+function T(k){return (I18N[LANG]&&I18N[LANG][k])||I18N.ur[k]||k;}
+function applyLang(l){
+LANG=l;try{localStorage.setItem('jafarLang',l);}catch(e){}
+document.documentElement.lang=(l==='roman')?'ur':l;
+document.documentElement.dir=(l==='ur'||l==='ar')?'rtl':'ltr';
+var els=document.querySelectorAll('[data-i]');
+for(var i=0;i<els.length;i++){var k=els[i].getAttribute('data-i');if(I18N[l][k])els[i].textContent=I18N[l][k];}
+var showUr=(l==='ur');
+var blocks=document.querySelectorAll('[data-content]');
+for(var j=0;j<blocks.length;j++){var c=blocks[j].getAttribute('data-content');blocks[j].classList.toggle('hidden', showUr ? c!=='ur' : c!=='en');}
+document.getElementById('langSel').value=l;
+renderWazifa();
+}
+var WAZIFAS=[
+{ur:'اتوار: یا حیّ یا قیّوم — 313 بار، درود شریف اول و آخر 11 بار۔',en:'Sunday: Ya Hayyu Ya Qayyum — 313 times, Darood 11 times before and after.'},
+{ur:'پیر: سورۃ یٰسین صبح پڑھیں اور استغفار 100 بار۔',en:'Monday: Surah Ya-Sin in the morning and Istighfar 100 times.'},
+{ur:'منگل: آیت الکرسی 41 بار اور درود شریف 100 بار۔',en:'Tuesday: Ayat-ul-Kursi 41 times and Darood 100 times.'},
+{ur:'بدھ: سورۃ الم نشرح 41 بار اور یا فتاح 100 بار۔',en:'Wednesday: Surah Ash-Sharh 41 times and Ya Fattah 100 times.'},
+{ur:'جمعرات: سورۃ الکہف کی تلاوت اور درود شریف کی کثرت۔',en:'Thursday: Recite Surah Al-Kahf and abundant Darood.'},
+{ur:'جمعہ: سورۃ الکہف، درود شریف 313 بار اور صدقہ حسبِ توفیق۔',en:'Friday: Surah Al-Kahf, Darood 313 times and charity as able.'},
+{ur:'ہفتہ: سورۃ الفاتحہ 41 بار پانی پر دم کر کے پئیں اور یا شافی 100 بار۔',en:'Saturday: Surah Al-Fatiha 41 times blown on water, and Ya Shafi 100 times.'}];
+function renderWazifa(){var w=WAZIFAS[new Date().getDay()];var el=document.getElementById('dailyWazifa');if(el)el.innerHTML='<p style="font-size:16px;line-height:2">'+(LANG==='ur'?w.ur:w.en)+'</p>';}
+
 var purposeText='تسخیر و محبت و کامیابی';
+function clean(s){return s.replace(/\s+/g,'').trim();}
+function breakdown(s){var c=clean(s),parts=[],t=0;for(var i=0;i<c.length;i++){if(ABJAD[c[i]]){parts.push(c[i]+'='+ABJAD[c[i]]);t+=ABJAD[c[i]];}}return{parts:parts,total:t};}
+function takseerRow(s,fromStart){var out='',a=0,b=s.length-1;if(fromStart){while(a<=b){out+=s[a];if(a!==b)out+=s[b];a++;b--;}}else{while(a<=b){out+=s[b];if(a!==b)out+=s[a];a++;b--;}}return out;}
+function mizajOf(s){var counts={fire:0,air:0,water:0,earth:0},c=clean(s);for(var i=0;i<c.length;i++){if(ELEM[c[i]])counts[ELEM[c[i]]]++;}var best='fire',bv=-1;for(var k in counts){if(counts[k]>bv){bv=counts[k];best=k;}}return{el:best,counts:counts};}
 var tabs=document.querySelectorAll('.tab');
 for(var i=0;i<tabs.length;i++){tabs[i].addEventListener('click',function(){for(var j=0;j<tabs.length;j++)tabs[j].classList.remove('active');this.classList.add('active');var t=this.getAttribute('data-tab');document.getElementById('tab-jafar').classList.toggle('hidden',t!=='jafar');document.getElementById('tab-istikhara').classList.toggle('hidden',t!=='istikhara');document.getElementById('tab-ilaj').classList.toggle('hidden',t!=='ilaj');});}
 var ps=document.querySelectorAll('.purpose');
 for(var i=0;i<ps.length;i++){ps[i].addEventListener('click',function(){for(var j=0;j<ps.length;j++)ps[j].classList.remove('active');this.classList.add('active');purposeText=this.getAttribute('data-p');});}
 document.getElementById('maxLines').addEventListener('input',function(){document.getElementById('linesVal').textContent=this.value;});
-function clean(s){return s.replace(/\s+/g,'').trim();}
-function breakdown(s){var c=clean(s),parts=[],t=0;for(var i=0;i<c.length;i++){if(ABJAD[c[i]]){parts.push(c[i]+'='+ABJAD[c[i]]);t+=ABJAD[c[i]];}}return{parts:parts,total:t};}
-function takseerRow(s,fromStart){var out='',a=0,b=s.length-1;if(fromStart){while(a<=b){out+=s[a];if(a!==b)out+=s[b];a++;b--;}}else{while(a<=b){out+=s[b];if(a!==b)out+=s[a];a++;b--;}}return out;}
-var lastText='',lastGrid=[],lastSize=3;
-function renderHist(){try{var h=JSON.parse(localStorage.getItem('jafarHist')||'[]');if(!h.length)return;document.getElementById('histCard').classList.remove('hidden');var html='';for(var i=0;i<h.length;i++){html+='<div><button data-h="'+i+'">🕐 '+h[i].label+' — مجموعہ '+h[i].total+'</button></div>';}document.getElementById('hist').innerHTML=html;var btns=document.querySelectorAll('[data-h]');for(var j=0;j<btns.length;j++){btns[j].addEventListener('click',function(){var it=h[parseInt(this.getAttribute('data-h'),10)];alert(it.text);});}}catch(e){}}
+document.getElementById('langSel').addEventListener('change',function(){applyLang(this.value);});
+var sws=document.querySelectorAll('[data-theme-set]');
+function applyTheme(name){document.documentElement.setAttribute('data-theme',name);try{localStorage.setItem('jafarTheme',name);}catch(e){}for(var i=0;i<sws.length;i++){sws[i].classList.toggle('on',sws[i].getAttribute('data-theme-set')===name);}}
+for(var i=0;i<sws.length;i++){sws[i].addEventListener('click',function(){applyTheme(this.getAttribute('data-theme-set'));});}
+document.getElementById('fontRange').addEventListener('input',function(){document.body.style.zoom=(this.value/100);try{localStorage.setItem('jafarZoom',this.value);}catch(e){}});
+var lastFocus=null;
+document.addEventListener('focusin',function(e){if(e.target&&(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'))lastFocus=e.target;});
+var KB='ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ہ ھ ء ی ے'.split(' ');
+var kbHtml='';for(var i=0;i<KB.length;i++){kbHtml+='<button data-kb="'+KB[i]+'">'+KB[i]+'</button>';}
+kbHtml+='<button class="wide" data-kb=" ">Space</button><button class="wide" data-kb="back">⌫</button>';
+document.getElementById('kbd').innerHTML=kbHtml;
+document.getElementById('kbBtn').addEventListener('click',function(){document.getElementById('kbd').classList.toggle('hidden');});
+var kbs=document.querySelectorAll('[data-kb]');
+for(var i=0;i<kbs.length;i++){kbs[i].addEventListener('click',function(){if(!lastFocus)lastFocus=document.getElementById('talib');var v=this.getAttribute('data-kb');if(v==='back'){lastFocus.value=lastFocus.value.slice(0,-1);}else{lastFocus.value+=v;}lastFocus.focus();});}
+document.getElementById('exBtn').addEventListener('click',function(){document.getElementById('talib').value='احمد';document.getElementById('talibMother').value='فاطمہ';document.getElementById('matloob').value='علی';document.getElementById('matloobMother').value='خدیجہ';});
+document.getElementById('clearBtn').addEventListener('click',function(){var ids=['talib','talibMother','matloob','matloobMother','istName','istMother','istQuestion'];for(var i=0;i<ids.length;i++)document.getElementById(ids[i]).value='';});
+function loadProfiles(){try{var p=JSON.parse(localStorage.getItem('jafarProfiles')||'{}');var sel=document.getElementById('profSel');sel.innerHTML='<option value="">—</option>';for(var name in p){var o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o);}return p;}catch(e){return{};}}
+loadProfiles();
+document.getElementById('profSave').addEventListener('click',function(){var name=prompt(T('profPrompt'));if(!name)return;var p={};try{p=JSON.parse(localStorage.getItem('jafarProfiles')||'{}');}catch(e){}p[name]={t:document.getElementById('talib').value,tm:document.getElementById('talibMother').value,m:document.getElementById('matloob').value,mm:document.getElementById('matloobMother').value};try{localStorage.setItem('jafarProfiles',JSON.stringify(p));}catch(e){}loadProfiles();document.getElementById('profSel').value=name;});
+document.getElementById('profSel').addEventListener('change',function(){if(!this.value)return;var p=loadProfiles();var it=p[this.value];if(!it)return;document.getElementById('talib').value=it.t;document.getElementById('talibMother').value=it.tm;document.getElementById('matloob').value=it.m;document.getElementById('matloobMother').value=it.mm;});
+document.getElementById('profDel').addEventListener('click',function(){var sel=document.getElementById('profSel');if(!sel.value)return;var p=loadProfiles();delete p[sel.value];try{localStorage.setItem('jafarProfiles',JSON.stringify(p));}catch(e){}loadProfiles();});
+var lastText='',lastGrid=[],lastSize=3,lastNames={};
+function renderHist(){try{var h=JSON.parse(localStorage.getItem('jafarHist')||'[]');if(!h.length)return;document.getElementById('histCard').classList.remove('hidden');var html='';for(var i=0;i<h.length;i++){html+='<div><button data-h="'+i+'">🕐 '+h[i].label+' — '+h[i].total+'</button></div>';}document.getElementById('hist').innerHTML=html;var btns=document.querySelectorAll('[data-h]');for(var j=0;j<btns.length;j++){btns[j].addEventListener('click',function(){var it=h[parseInt(this.getAttribute('data-h'),10)];alert(it.text);});}}catch(e){}}
 renderHist();
 document.getElementById('genBtn').addEventListener('click',function(){
 var talib=document.getElementById('talib').value,tm=document.getElementById('talibMother').value,mat=document.getElementById('matloob').value,mm=document.getElementById('matloobMother').value;
-if(!clean(talib)||!clean(mat)){alert('براہ کرم طالب اور مطلوب کا نام لکھیں');return;}
+if(!clean(talib)||!clean(mat)){alert(T('alertNames'));return;}
 var b1=breakdown(talib),b2=breakdown(tm),b3=breakdown(mat),b4=breakdown(mm),bp=breakdown(purposeText);
 var total=b1.total+b2.total+b3.total+b4.total+bp.total;
-document.getElementById('breakdown').innerHTML='<div>طالب '+talib+': '+b1.parts.join(' ، ')+' = <b>'+b1.total+'</b></div><div>والدہ طالب '+tm+': '+b2.parts.join(' ، ')+' = <b>'+b2.total+'</b></div><div>مطلوب '+mat+': '+b3.parts.join(' ، ')+' = <b>'+b3.total+'</b></div><div>والدہ مطلوب '+mm+': '+b4.parts.join(' ، ')+' = <b>'+b4.total+'</b></div><div>مقصد: '+bp.parts.join(' ، ')+' = <b>'+bp.total+'</b></div>';
-document.getElementById('sums').innerHTML='<div>کل مجموعہ: <b>'+total+'</b></div><div>طریقہ: <b>'+(document.getElementById('takseerType').value==='sadr'?'صدر و مؤخر':'مؤخر و صدر')+'</b></div>';
+document.getElementById('breakdown').innerHTML='<div>'+T('talib')+' '+talib+': '+b1.parts.join(' ، ')+' = <b>'+b1.total+'</b></div><div>'+T('talibM')+' '+tm+': '+b2.parts.join(' ، ')+' = <b>'+b2.total+'</b></div><div>'+T('matloob')+' '+mat+': '+b3.parts.join(' ، ')+' = <b>'+b3.total+'</b></div><div>'+T('matloobM')+' '+mm+': '+b4.parts.join(' ، ')+' = <b>'+b4.total+'</b></div><div>'+purposeText+': '+bp.parts.join(' ، ')+' = <b>'+bp.total+'</b></div>';
+document.getElementById('sums').innerHTML='<div>'+T('totalLbl')+': <b>'+total+'</b></div><div>'+T('methodLbl')+': <b>'+(document.getElementById('takseerType').value==='sadr'?'Sadr-o-Muakhkhar':'Muakhkhar-o-Sadr')+'</b></div>';
+var mz=mizajOf(talib+mat);
+document.getElementById('mizaj').innerHTML='<div>'+T('mizajLbl')+': <b>'+T(mz.el)+'</b> (🔥'+mz.counts.fire+' · 💨'+mz.counts.air+' · 💧'+mz.counts.water+' · 🌍'+mz.counts.earth+')</div>';
 var base=clean(talib)+clean(tm)+clean(purposeText)+clean(mat)+clean(mm);
-document.getElementById('baseLine').textContent=base+'\nحروف: '+base.length;
+var notes=[];
+if(document.getElementById('optClean').checked){var cb='';for(var i=0;i<base.length;i++){if(ABJAD[base[i]])cb+=base[i];}base=cb;notes.push('Clean ✓');}
+if(document.getElementById('optTakhlees').checked){var tb='',seen={};for(var i=0;i<base.length;i++){if(!seen[base[i]]){seen[base[i]]=1;tb+=base[i];}}base=tb;notes.push('Takhlees ✓');}
+document.getElementById('baseLine').textContent=base+'\n'+T('charsLbl')+': '+base.length+(notes.length?' · '+notes.join(' · '):'');
 var maxLines=parseInt(document.getElementById('maxLines').value,10),fromStart=document.getElementById('takseerType').value==='sadr';
 var rows=[],cur=base;for(var r=0;r<maxLines;r++){cur=takseerRow(cur,fromStart);rows.push((r+1)+'. '+cur);if(cur===base&&r>0)break;}
 document.getElementById('takseer').textContent=rows.join('\n');
@@ -216,38 +355,55 @@ var size=parseInt(document.getElementById('lohSize').value,10);lastSize=size;
 var g3=[9,1,5,6,7,2,3,8,4],g4=[16,2,3,13,5,10,11,8,9,6,7,12,4,15,14,1];
 var baseGrid=size===3?g3:g4,k=total%(size*size),grid=[],html='<table>';
 for(var g=0;g<baseGrid.length;g++){grid.push(baseGrid[g]+k);if(g%size===0)html+='<tr>';html+='<td>'+(baseGrid[g]+k)+'</td>';if(g%size===size-1)html+='</tr>';}
-html+='</table>';lastGrid=grid;
+html+='</table>';lastGrid=grid;lastNames={talib:talib,mat:mat,total:total};
 var rowSum=size===3?15+3*k:34+4*k;
-html+='<p class="sub" style="text-align:center">ہر قطار و کالم کا مجموعہ: '+rowSum+'</p>';
-document.getElementById('lohTitle').textContent=size===3?'لوح — 3 × 3':'لوح — 4 × 4';
+html+='<p class="sub" style="text-align:center">'+T('rowSumLbl')+': '+rowSum+'</p>';
+document.getElementById('lohTitle').textContent=T('lohWord')+' — '+size+' × '+size;
 document.getElementById('loh').innerHTML=html;
 document.getElementById('resultCard').classList.remove('hidden');
-lastText='طلسم جفر جنریٹر — نتیجہ\nطالب: '+talib+' ('+b1.total+')\nمطلوب: '+mat+' ('+b3.total+')\nمقصد: '+purposeText+'\nکل مجموعہ: '+total+'\nسطر اساسی: '+base+'\nلوح: '+grid.join('-');
-document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent('طلسم جفر جنریٹر — مفت ٹول: '+location.href+'\nمیرا نتیجہ — مجموعہ: '+total);
+lastText='Talism Jafar Generator — Result\nTalib: '+talib+' ('+b1.total+')\nMatloob: '+mat+' ('+b3.total+')\nPurpose: '+purposeText+'\nTotal: '+total+'\nMizaj: '+mz.el+'\nBase: '+base+'\nLoh: '+grid.join('-')+'\nhttps://farrakhimtiaz74.github.io/talism-jafar-generator/';
+document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent('Talism Jafar Generator — FREE: '+location.href+'\nTotal: '+total);
 try{var h=JSON.parse(localStorage.getItem('jafarHist')||'[]');h.unshift({label:talib+' / '+mat,total:total,text:lastText});h=h.slice(0,5);localStorage.setItem('jafarHist',JSON.stringify(h));renderHist();}catch(e){}
 document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
 });
+function drawGrid(x,grid,size,ox,oy,cell){x.font='bold '+Math.floor(cell*0.42)+'px Tahoma';x.textAlign='center';for(var r=0;r<size;r++){for(var c=0;c<size;c++){var px=ox+c*cell,py=oy+r*cell;x.strokeStyle='#d4af37';x.lineWidth=3;x.strokeRect(px,py,cell,cell);x.fillStyle='#f5d76e';x.fillText(String(grid[r*size+c]),px+cell/2,py+cell/2+cell*0.15);}}}
 document.getElementById('pngBtn').addEventListener('click',function(){
 if(!lastGrid.length)return;var size=lastSize,cell=110,cv=document.createElement('canvas');cv.width=size*cell+40;cv.height=size*cell+110;var x=cv.getContext('2d');
 x.fillStyle='#062e1d';x.fillRect(0,0,cv.width,cv.height);x.fillStyle='#f5d76e';x.font='bold 30px Tahoma';x.textAlign='center';x.fillText('Talism Jafar — Loh',cv.width/2,45);
-x.font='bold 40px Tahoma';for(var r=0;r<size;r++){for(var c=0;c<size;c++){var px=20+c*cell,py=70+r*cell;x.strokeStyle='#d4af37';x.lineWidth=3;x.strokeRect(px,py,cell,cell);x.fillStyle='#f5d76e';x.fillText(String(lastGrid[r*size+c]),px+cell/2,py+cell/2+14);}}
+drawGrid(x,lastGrid,size,20,70,cell);
 var a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='talism-jafar-loh.png';a.click();
 });
-document.getElementById('copyBtn').addEventListener('click',function(){if(!lastText)return;navigator.clipboard.writeText(lastText).then(function(){document.getElementById('copyMsg').textContent='کاپی ہوگیا ✓';});});
+document.getElementById('cardBtn').addEventListener('click',function(){
+if(!lastGrid.length)return;var cv=document.createElement('canvas');cv.width=840;cv.height=1140;var x=cv.getContext('2d');
+x.fillStyle='#062e1d';x.fillRect(0,0,840,1140);x.strokeStyle='#d4af37';x.lineWidth=6;x.strokeRect(18,18,804,1104);
+x.fillStyle='#f5d76e';x.textAlign='center';x.font='bold 44px Tahoma';x.fillText('Talism Jafar Generator',420,100);
+x.font='24px Tahoma';x.fillStyle='#f5f1e6';
+x.fillText('Talib: '+lastNames.talib,420,180);
+x.fillText('Matloob: '+lastNames.mat,420,225);
+x.fillText(purposeText,420,270);
+x.font='bold 34px Tahoma';x.fillStyle='#f5d76e';x.fillText('Total: '+lastNames.total,420,330);
+var cell=lastSize===3?150:112;var gw=cell*lastSize;drawGrid(x,lastGrid,lastSize,(840-gw)/2,390,cell);
+x.font='22px Tahoma';x.fillStyle='#c9bfa5';x.fillText('farrakhimtiaz74.github.io/talism-jafar-generator',420,1030);x.fillText('Farrakh Tools — Free Forever',420,1070);
+var a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='talism-jafar-card.png';a.click();
+});
+document.getElementById('printBtn').addEventListener('click',function(){if(!lastText)return;document.getElementById('printArea').textContent=lastText+'\n\nLoh: '+lastGrid.join(' | ');window.print();});
+document.getElementById('copyBtn').addEventListener('click',function(){if(!lastText)return;navigator.clipboard.writeText(lastText).then(function(){document.getElementById('copyMsg').textContent=T('copiedMsg');});});
 document.getElementById('dlBtn').addEventListener('click',function(){if(!lastText)return;var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([lastText],{type:'text/plain'}));a.download='talism-jafar-result.txt';a.click();});
 document.getElementById('istBtn').addEventListener('click',function(){
 var q=document.getElementById('istName').value+' '+document.getElementById('istMother').value+' '+document.getElementById('istQuestion').value;
-var bd=breakdown(q);if(!bd.total){alert('براہ کرم نام اور سوال لکھیں');return;}
+var bd=breakdown(q);if(!bd.total){alert(T('alertIst'));return;}
 var s=bd.total%114;if(s===0)s=114;var ayatCount=AYAT[s-1];var a=bd.total%ayatCount;if(a===0)a=ayatCount;
-document.getElementById('istResult').innerHTML='<div class="sum"><div>سوال کے کل اعداد: <b>'+bd.total+'</b></div><div>سورۃ نمبر: <b>'+s+'</b> — '+SURAHS[s-1]+'</div><div>اس سورۃ کی آیات: <b>'+ayatCount+'</b></div><div>متعلقہ آیت نمبر: <b>'+a+'</b></div></div><p class="note" style="margin-top:10px">اب سورۃ '+SURAHS[s-1]+' کی آیت '+a+' پڑھ کر اس کا مفہوم دیکھیں — خیر/رحمت کا ذکر ہو تو مثبت اشارہ، وعید کا ذکر ہو تو احتیاط و تاخیر بہتر۔ (طریقہ: مستحصلہِ قرآنی، بابر سلطان قادری — تصدیق شدہ مثال: اعداد 1960 → سورۃ 22 الحج → آیت 10، یہی اس ٹول سے نکلتا ہے۔)</p>';
+document.getElementById('istResult').innerHTML='<div class="sum"><div>'+T('istTotal')+': <b>'+bd.total+'</b></div><div>'+T('istSurah')+': <b>'+s+'</b> — '+SURAHS[s-1]+'</div><div>'+T('istAyatCount')+': <b>'+ayatCount+'</b></div><div>'+T('istAyat')+': <b>'+a+'</b></div></div><p class="note" style="margin-top:10px">Surah '+SURAHS[s-1]+', Ayat '+a+' — (Mustahsila-e-Qurani, Babar Sultan Qadri; verified example: 1960 → Surah 22 Al-Hajj → Ayat 10)</p>';
 });
-var at='<table class="abjad"><tr>';var keys=Object.keys(ABJAD),seen={},cells=[];
-for(var i=0;i<keys.length;i++){var v=ABJAD[keys[i]];var key=keys[i]+v;if(seen[key])continue;seen[key]=1;cells.push('<td>'+keys[i]+' = '+v+'</td>');}
+var at='<table class="abjad"><tr>';var keys=Object.keys(ABJAD),seenA={},cells=[];
+for(var i=0;i<keys.length;i++){var v=ABJAD[keys[i]];var key=keys[i]+v;if(seenA[key])continue;seenA[key]=1;cells.push('<td>'+keys[i]+' = '+v+'</td>');}
 for(var i=0;i<cells.length;i++){at+=cells[i];if(i%6===5)at+='</tr><tr>';}
 at+='</tr></table>';document.getElementById('abjadTable').innerHTML=at;
-var roman=false;
-document.getElementById('langBtn').addEventListener('click',function(){roman=!roman;document.querySelector('[data-t="formTitle"]').textContent=roman?'Enter Names — Madakhal-e-Jafar':'📝 مداخل جفر کا اندراج کریں';this.textContent=roman?'اردو':'Roman / English';});
+try{var sl=localStorage.getItem('jafarLang');if(sl&&I18N[sl])applyLang(sl);else applyLang('ur');}catch(e){applyLang('ur');}
+try{var st=localStorage.getItem('jafarTheme');if(st)applyTheme(st);var sz=localStorage.getItem('jafarZoom');if(sz){document.getElementById('fontRange').value=sz;document.body.style.zoom=(sz/100);}}catch(e){}
+renderWazifa();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
+
 </script>
 </body>
 </html>

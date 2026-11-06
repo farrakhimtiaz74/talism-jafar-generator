@@ -1,4 +1,4 @@
-var CACHE = 'jafar-v3';
+var CACHE = 'jafar-v4';
 var FILES = ['./', './index.html', './poster.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', function(e) {
   self.skipWaiting();

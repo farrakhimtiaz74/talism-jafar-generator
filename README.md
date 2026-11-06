@@ -14,6 +14,11 @@ and get per-letter Abjad-e-Qamri breakdown, Satr-e-Asasi, Takseer rows and a 3x3
 - **Istikhara:** Mustahsila-e-Qurani (Babar Sultan Qadri, via RoohaniAloom) — question's Abjad total divided by 114 for the Surah, then by that Surah's ayat count for the Ayat. Verified against the published worked example: total 1960 → Surah 22 Al-Hajj → Ayat 10, exactly reproduced by this tool.
 - The specific book arrangement of Abu Al-Hasan (Rohani Mufti) is NOT claimed or reproduced.
 
+## Version 3 (2026-11-06)
+- **5 languages** — Urdu, Roman Urdu, English, Arabic, Hindi: full interface (84 translated strings each, verified), auto RTL/LTR, choice saved. Long guide text in Urdu + English.
+- **5 themes** — Classic Green+Gold, Professional Blue, Royal Purple+Gold, Amber Noir, Light Cream; saved per device.
+- Result image card PNG, Print/PDF, on-screen Urdu keyboard, font-size slider, Takhlees + clean non-Abjad options, name Mizaj (traditional 4-element letter groups), saved name profiles, example/clear, daily Wazifa card, contact link.
+
 ## Features
 - Urdu RTL, mobile-first, dark green + gold theme, PWA (installable, offline)
 - Per-letter Abjad breakdown for every name + purpose
