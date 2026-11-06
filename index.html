@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>طلسم جفر جنریٹر — Talism Jafar Generator (Prototype)</title>
+<meta name="description" content="Free Talism Jafar Generator prototype: enter Talib and Matloob names, select purpose, get Abjad totals, Takseer rows and Loh grid. Traditional rohani guidance only.">
+<style>
+:root{--green:#062e1d;--green2:#0b4a2e;--gold:#d4af37;--gold2:#f5d76e;--card:#0d1f16;--line:#2a4a38;--text:#f5f1e6;--muted:#c9bfa5}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:radial-gradient(1000px 500px at 50% -100px,#14532d,#04150d);color:var(--text)}
+header{text-align:center;padding:28px 16px 8px}
+.badge{display:inline-block;background:#7f1d1d;color:#fff;padding:4px 14px;border-radius:999px;font-size:13px}
+h1{color:var(--gold2);font-size:34px;margin:10px 0 4px}
+.sub{color:var(--muted);margin:0 0 6px}
+.proto{background:#7f1d1d;border:1px solid #fca5a5;border-radius:10px;max-width:760px;margin:14px auto;padding:10px 14px;font-size:14px;text-align:center}
+main{max-width:760px;margin:0 auto;padding:10px 16px 30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.card h2{color:var(--gold);font-size:19px;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px}
+input,select{width:100%;padding:11px;border-radius:9px;border:1px solid var(--line);background:#07130c;color:var(--text);font-size:16px}
+.purposes{display:flex;gap:8px;flex-wrap:wrap}
+.purpose{flex:1;min-width:140px;padding:11px;border-radius:9px;border:1px solid var(--line);background:#07130c;color:var(--text);cursor:pointer;font-size:15px}
+.purpose.active{border-color:var(--gold);background:var(--green2);color:var(--gold2)}
+.checks{display:flex;gap:16px;flex-wrap:wrap;font-size:15px}
+.checks label{display:flex;gap:6px;align-items:center;color:var(--text);font-size:15px}
+.checks input{width:auto}
+.btn{width:100%;padding:14px;border:none;border-radius:11px;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#231a00;font-size:18px;font-weight:bold;cursor:pointer}
+.btn2{padding:10px 14px;border-radius:9px;border:1px solid var(--gold);background:transparent;color:var(--gold2);cursor:pointer;font-size:14px}
+.rowbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+table{border-collapse:collapse;margin:10px auto}
+td{border:1px solid var(--gold);width:54px;height:54px;text-align:center;font-size:22px;color:var(--gold2)}
+pre{white-space:pre-wrap;word-break:break-all;background:#07130c;border:1px solid var(--line);border-radius:9px;padding:12px;font-size:14px;line-height:1.9;max-height:320px;overflow:auto}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:15px}
+.sum div{background:#07130c;border:1px solid var(--line);border-radius:9px;padding:10px}
+.sum b{color:var(--gold2)}
+.hidden{display:none}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:18px}
+a{color:var(--gold2)}
+</style>
+</head>
+<body>
+<header>
+<span class="badge">خصوصی — بالکل مفت</span>
+<h1>طلسم جفر جنریٹر</h1>
+<p class="sub">کلاسک جفر ترتیب اور سطرِ اساسی — پروٹوٹائپ</p>
+<p class="sub">Talism Jafar Generator · Free Prototype · By Farrakh Tools</p>
+</header>
+<div class="proto">⚠️ یہ پروٹوٹائپ (ابتدائی نمونہ) ہے — ابجد گنتی اور تکسیر کا ڈیمو فارمولا ہے، مستند کلاسک نتیجہ ابھی شامل نہیں۔ یہ صرف روایتی/روحانی رہنمائی کے لیے ہے، کسی نتیجے کی ضمانت نہیں۔</div>
+<main>
+<div class="card">
+<h2>📝 مداخل جفر کا اندراج کریں</h2>
+<div class="grid">
+<div><label>طالب کا نام</label><input id="talib" value="حسن"></div>
+<div><label>والدہ طالب کا نام</label><input id="talibMother" value="آمنہ"></div>
+<div><label>مطلوب کا نام</label><input id="matloob" value="زینب"></div>
+<div><label>والدہ مطلوب کا نام</label><input id="matloobMother" value="مریم"></div>
+</div>
+<h2 style="margin-top:18px">مقصدِ عمل کا انتخاب کریں</h2>
+<div class="purposes">
+<button class="purpose active" data-p="تسخیر و محبت و کامیابی">❤️ تسخیر اور محبت کا عمل</button>
+<button class="purpose" data-p="عداوت و بغض کا خاتمہ">🤍 عداوت اور بغض کا حل</button>
+<button class="purpose" data-p="روحانی علاج و کامیابی">🌿 روحانی علاج و کامیابی</button>
+</div>
+<h2 style="margin-top:18px">مدخل عددی حروف کی شمولیت (Extensions)</h2>
+<div class="checks">
+<label><input type="checkbox" id="extKabeer" checked> کبیر</label>
+<label><input type="checkbox" id="extWast" checked> وسط</label>
+<label><input type="checkbox" id="extSagheer" checked> صغیر</label>
+</div>
+<div style="margin-top:14px"><label>تکسیر کی زیادہ سے زیادہ سطریں: <span id="linesVal">20</span></label>
+<input type="range" id="maxLines" min="3" max="100" value="20" style="padding:0"></div>
+<button class="btn" id="genBtn" style="margin-top:16px">✨ جفر تیار کریں</button>
+</div>
+
+<div class="card hidden" id="resultCard">
+<h2>نتیجہ — ابجد گنتی</h2>
+<div class="sum" id="sums"></div>
+<h2 style="margin-top:18px">سطرِ اساسی (Base Line)</h2>
+<pre id="baseLine"></pre>
+<h2 style="margin-top:18px">سطریںِ تکسیر (Demo Takseer Rows)</h2>
+<pre id="takseer"></pre>
+<h2 style="margin-top:18px;text-align:center">لوح — 3 × 3</h2>
+<div id="loh"></div>
+<div class="rowbtns">
+<button class="btn2" id="copyBtn">📋 نتیجہ کاپی کریں</button>
+<button class="btn2" id="dlBtn">⬇️ ڈاؤن لوڈ (TXT)</button>
+<a class="btn2" id="waShare" target="_blank" rel="noopener" style="text-decoration:none">💬 واٹس ایپ شیئر</a>
+</div>
+<p class="sub" id="copyMsg"></p>
+</div>
+
+<div class="card">
+<h2>عام سوالات</h2>
+<p><b>یہ ٹول کیا کرتا ہے؟</b><br>ناموں کی ابجد قمری گنتی، سطرِ اساسی اور تکسیر کی سطریں خودکار بناتا ہے — پروٹوٹائپ ڈیمو فارمولے کے ساتھ۔</p>
+<p><b>کیا یہ مفت ہے؟</b><br>جی ہاں، بالکل مفت اور لائف ٹائم — کوئی سائن اپ نہیں، نام کہیں اپ لوڈ نہیں ہوتے، سب گنتی آپ کے موبائل میں ہوتی ہے۔</p>
+<p><b>مستند فارمولا کب آئے گا؟</b><br>کلاسک جفر کے مستند ماخذ سے تصدیق کے بعد اگلے ورژن میں شامل ہوگا۔</p>
+</div>
+</main>
+<footer>طلسم جفر جنریٹر — پروٹوٹائپ · Farrakh Tools · روایتی روحانی رہنمائی کے لیے، کسی نتیجے کی ضمانت نہیں</footer>
+<script>
+var ABJAD = {
+'ا':1,'آ':1,'ب':2,'ج':3,'د':4,'ه':5,'ہ':5,'و':6,'ز':7,'ح':8,'ط':9,'ي':10,'ی':10,'ك':20,'ک':20,'ل':30,'م':40,'ن':50,'س':60,'ع':70,'ف':80,'ص':90,'ق':100,'ر':200,'ش':300,'ت':400,'ث':500,'خ':600,'ذ':700,'ض':800,'ظ':900,'غ':1000,
+'ة':5,'ء':1,'ؤ':6,'ئ':10,'ں':50,'گ':20,'چ':3,'پ':2,'ٹ':400,'ڈ':4,'ڑ':200,'ے':10
+};
+var purposeText = 'تسخیر و محبت و کامیابی';
+var purposes = document.querySelectorAll('.purpose');
+for (var i=0;i<purposes.length;i++){
+  purposes[i].addEventListener('click', function(){
+    for (var j=0;j<purposes.length;j++) purposes[j].classList.remove('active');
+    this.classList.add('active');
+    purposeText = this.getAttribute('data-p');
+  });
+}
+document.getElementById('maxLines').addEventListener('input', function(){
+  document.getElementById('linesVal').textContent = this.value;
+});
+function clean(s){ return s.replace(/\s+/g,'').trim(); }
+function abjadSum(s){
+  var t=0, c=clean(s);
+  for (var i=0;i<c.length;i++){ if (ABJAD[c[i]]) t+=ABJAD[c[i]]; }
+  return t;
+}
+function interleave(s){
+  var out='', a=0, b=s.length-1;
+  while (a<=b){
+    out+=s[a];
+    if (a!==b) out+=s[b];
+    a++; b--;
+  }
+  return out;
+}
+var lastText='';
+document.getElementById('genBtn').addEventListener('click', function(){
+  var talib=document.getElementById('talib').value;
+  var tm=document.getElementById('talibMother').value;
+  var mat=document.getElementById('matloob').value;
+  var mm=document.getElementById('matloobMother').value;
+  if (!clean(talib)||!clean(mat)){ alert('براہ کرم طالب اور مطلوب کا نام لکھیں'); return; }
+  var s1=abjadSum(talib), s2=abjadSum(tm), s3=abjadSum(mat), s4=abjadSum(mm), sp=abjadSum(purposeText);
+  var total=s1+s2+s3+s4+sp;
+  document.getElementById('sums').innerHTML =
+    '<div>طالب: <b>'+s1+'</b></div><div>والدہ طالب: <b>'+s2+'</b></div>'+
+    '<div>مطلوب: <b>'+s3+'</b></div><div>والدہ مطلوب: <b>'+s4+'</b></div>'+
+    '<div>مقصد: <b>'+sp+'</b></div><div>کل مجموعہ: <b>'+total+'</b></div>';
+  var base = clean(talib)+clean(tm)+clean(purposeText)+clean(mat)+clean(mm);
+  document.getElementById('baseLine').textContent = base + '\nحروف: ' + base.length;
+  var maxLines=parseInt(document.getElementById('maxLines').value,10);
+  var rows=[], cur=base;
+  for (var r=0;r<maxLines;r++){ cur=interleave(cur); rows.push((r+1)+'. '+cur); if (cur===base && r>0) break; }
+  document.getElementById('takseer').textContent = rows.join('\n');
+  var baseGrid=[9,1,5,6,7,2,3,8,4];
+  var k=total%9;
+  var html='<table>';
+  for (var g=0;g<9;g++){ if(g%3===0) html+='<tr>'; html+='<td>'+(baseGrid[g]+k)+'</td>'; if(g%3===2) html+='</tr>'; }
+  html+='</table><p class="sub" style="text-align:center">ہر قطار کا مجموعہ: '+(15+(3*k))+'</p>';
+  document.getElementById('loh').innerHTML=html;
+  document.getElementById('resultCard').classList.remove('hidden');
+  lastText='طلسم جفر جنریٹر — نتیجہ\nطالب: '+talib+' ('+s1+')\nمطلوب: '+mat+' ('+s3+')\nمقصد: '+purposeText+'\nکل مجموعہ: '+total+'\nسطر اساسی: '+base+'\n[پروٹوٹائپ ڈیمو — مستند فارمولا جلد آرہا ہے]';
+  document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent('طلسم جفر جنریٹر — مفت ٹول: '+location.href);
+  document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('copyBtn').addEventListener('click', function(){
+  if(!lastText) return;
+  navigator.clipboard.writeText(lastText).then(function(){ document.getElementById('copyMsg').textContent='کاپی ہوگیا ✓'; });
+});
+document.getElementById('dlBtn').addEventListener('click', function(){
+  if(!lastText) return;
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([lastText],{type:'text/plain'}));
+  a.download='talism-jafar-result.txt'; a.click();
+});
+</script>
+</body>
+</html>
