@@ -19,10 +19,23 @@ footer{text-align:center;padding:18px;font-size:13.5px;opacity:.9}footer a,.card
 .adlabel{text-align:center;font-size:11px;letter-spacing:2px;opacity:.65;margin-top:16px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.grid2{grid-template-columns:1fr}}
 details{margin:8px 0}summary{cursor:pointer;color:#f5d76e}.bar{height:16px;background:rgba(255,255,255,.12);border-radius:8px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#d4af37,#f5d76e)}
+
+main .card{animation:fadeUp .5s both}main .card:nth-child(2){animation-delay:.07s}main .card:nth-child(3){animation-delay:.14s}main .card:nth-child(4){animation-delay:.21s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pop{animation:pop .45s both}@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.chipd{display:inline-block;border:1px solid rgba(212,175,55,.5);border-radius:20px;padding:2px 12px;margin:3px;font-size:13.5px;line-height:1.9;background:rgba(0,0,0,.25)}
+.stat{display:inline-block;min-width:88px;background:rgba(0,0,0,.3);border:1px solid rgba(212,175,55,.35);border-radius:12px;padding:8px 10px;margin:4px;text-align:center;font-size:13px}
+.stat b{display:block;font-size:19px;color:#f5d76e;line-height:1.5}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.dgrid{grid-template-columns:1fr}}
+.dcard{background:rgba(0,0,0,.25);border:1px solid rgba(212,175,55,.35);border-radius:14px;padding:12px 14px;content-visibility:auto;contain-intrinsic-size:auto 90px}
+.dcard .dt{color:#f5d76e;font-weight:bold;font-size:17px}
+.ring{transform:rotate(-90deg)}.ring .bgc{stroke:rgba(255,255,255,.12)}.ring .fgc{stroke:url(#goldGrad);stroke-linecap:round;transition:stroke-dashoffset 1.1s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style><meta property="og:title" content="برج معلوم کریں — نام سے اپنا برج جانیں | Burj Finder"><meta property="og:description" content="Talism Jafar Generator — مفت روحانی ٹولز | Farrakh Tools"><meta property="og:type" content="website"><meta property="og:url" content="https://farrakhimtiaz74.github.io/talism-jafar-generator/burj.html"><meta property="og:image" content="https://farrakhimtiaz74.github.io/talism-jafar-generator/icon-512.png"></head><body>
 <header><div class="bis">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div><img src="logo.svg" alt="Talism Jafar Generator logo" class="logo"><h1>♈ برج فائنڈر</h1><div class="sub">نام کے ابجدِ قمری عدد سے روایتی برج — مفت، بغیر سائن اپ</div></header>
 <main><div class="card"><label>اپنا نام لکھیں</label><input id="nm" placeholder="مثلاً محمد احمد"><label>والدہ کا نام (اختیاری — درست گنتی کے لیے بہتر)</label><input id="mm" placeholder="مثلاً فاطمہ"><button class="btn" id="go">♈ میرا برج بتائیں</button></div>
 <div class="card hidden" id="res"></div>
+<div class="card"><h3 style="color:#f5d76e">تمام برج — ایک نظر میں</h3><div id="allBurj" class="dgrid"></div></div>
 <div class="card"><h3 style="color:#f5d76e">طریقہ</h3><p class="sub">روایتی طریقے میں نام اور والدہ کے نام کے ابجد اعداد جمع کر کے 12 پر تقسیم کیا جاتا ہے — جو باقی بچے وہی آپ کا برج ہوتا ہے (باقی 0 ہو تو 12واں برج حوت)۔ یہ روایتی رہنمائی ہے، حتمی علم اللہ کے پاس ہے۔</p></div><script>
 var ABJAD={'ا':1,'آ':1,'ب':2,'ج':3,'د':4,'ه':5,'ہ':5,'ة':5,'و':6,'ؤ':6,'ز':7,'ح':8,'ط':9,'ي':10,'ی':10,'ى':10,'ئ':10,'ك':20,'ک':20,'ل':30,'م':40,'ن':50,'س':60,'ع':70,'ف':80,'ص':90,'ق':100,'ر':200,'ش':300,'ت':400,'ث':500,'خ':600,'ذ':700,'ض':800,'ظ':900,'غ':1000,'پ':2,'چ':3,'ٹ':4,'ڈ':4,'ڑ':200,'گ':20,'ے':10};
 var MZ={'fire':'ا ه ط م ف ش ذ آ'.split(' '),'air':'ب ي ن ص ت ض و ی'.split(' '),'water':'ج ز ك س ق ث ظ ک'.split(' '),'earth':'د ح ل ع ر خ غ'.split(' ')};
@@ -34,9 +47,11 @@ var BURJ=[['حمل','Aries','21 مارچ – 19 اپریل','fire','جوشیلے
 function burjOf(t){var r=t%12;if(r===0)r=12;return {b:BURJ[r-1],num:r};}
 function $(i){return document.getElementById(i);}
 </script><script>
+var ZS=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
 $('go').addEventListener('click',function(){var n=$('nm').value,m=$('mm').value;if(!clean(n)){alert('براہ کرم اپنا نام لکھیں');return;}
 var t=breakdown(n).total+breakdown(m).total;var r=burjOf(t);
 $('res').classList.remove('hidden');
-$('res').innerHTML='<div class="big">'+r.b[0]+' ('+r.b[1]+')</div><p style="text-align:center">'+r.b[2]+' · عنصر: '+ELN[r.b[3]]+'</p><p class="sub">نام کا کل عدد: <b>'+t+'</b> · برج نمبر: '+r.num+'</p><p>🌟 مزاج: '+r.b[4]+'</p><p>💎 روایتی خوش قسمتی کا پتھر: '+r.b[5]+'</p><a class="btn2" target="_blank" href="https://wa.me/?text='+encodeURIComponent('میرا برج '+r.b[0]+' ہے! آپ بھی نام سے برج معلوم کریں — مفت: https://farrakhimtiaz74.github.io/talism-jafar-generator/burj.html')+'">💬 واٹس ایپ پر شیئر کریں</a>';
+$('res').innerHTML='<div class="pop" style="text-align:center"><div style="font-size:54px;line-height:1.25">'+ZS[r.num-1]+'</div><div class="big">'+r.b[0]+' ('+r.b[1]+')</div><div><span class="chipd">📅 '+r.b[2]+'</span><span class="chipd">عنصر: '+ELN[r.b[3]]+'</span><span class="chipd">💎 '+r.b[5]+'</span></div><div><span class="stat">نام کا کل عدد<b>'+t+'</b></span><span class="stat">برج نمبر<b>'+r.num+'</b></span></div><p style="text-align:right">🌟 خوبیاں: '+r.b[4]+'</p></div><a class="btn2" target="_blank" href="https://wa.me/?text='+encodeURIComponent('میرا برج '+r.b[0]+' ہے! آپ بھی نام سے برج معلوم کریں — مفت: https://farrakhimtiaz74.github.io/talism-jafar-generator/burj.html')+'">💬 واٹس ایپ پر شیئر کریں</a>';
 });
-</script></main><footer>Farrakh Tools — تمام ٹولز مفت · روایتی روحانی رہنمائی، کسی نتیجے کی ضمانت نہیں<br><a href="index.html">۞ طلسم جفر جنریٹر</a> · <a href="burj.html">برج فائنڈر</a> · <a href="ism-e-azam.html">اسمِ اعظم</a> · <a href="baby-name.html">بچے کا نام</a> · <a href="compatibility.html">موافقت</a> · <a href="khwab.html">خواب کی تعبیر</a> · <a href="wazifa-library.html">وظیفہ لائبریری</a><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}</script></footer></body></html>
+</script><script>(function(){var h='';for(var i=0;i<12;i++){h+='<div class="dcard"><div class="dt">'+ZS[i]+' '+BURJ[i][0]+' ('+BURJ[i][1]+')</div><p class="sub" style="margin:2px 0 0">📅 '+BURJ[i][2]+' · '+ELN[BURJ[i][3]]+'</p></div>';}document.getElementById('allBurj').innerHTML=h;})();</script>
+</main><footer>Farrakh Tools — تمام ٹولز مفت · روایتی روحانی رہنمائی، کسی نتیجے کی ضمانت نہیں<br><a href="index.html">۞ طلسم جفر جنریٹر</a> · <a href="burj.html">برج فائنڈر</a> · <a href="ism-e-azam.html">اسمِ اعظم</a> · <a href="baby-name.html">بچے کا نام</a> · <a href="compatibility.html">موافقت</a> · <a href="khwab.html">خواب کی تعبیر</a> · <a href="wazifa-library.html">وظیفہ لائبریری</a><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}</script></footer></body></html>
