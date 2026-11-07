@@ -1,5 +1,5 @@
-var CACHE = 'jafar-v20';
-var FILES = ['./', './index.html', './poster.html', './pro.html', './logo.svg', './burj.html', './ism-e-azam.html', './baby-name.html', './compatibility.html', './khwab.html', './wazifa-library.html', './mohabbat-jafar.html', './rizq-jafar.html', './shadi-jafar.html', './istikhara-online.html', './naam-ka-burj.html', './istikhara-ki-dua.html', './loh-e-jafar-tareeqa.html', './abjad-number.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+var CACHE = 'jafar-v21';
+var FILES = ['./', './index.html', './poster.html', './pro.html', './logo.svg', './burj.html', './ism-e-azam.html', './baby-name.html', './compatibility.html', './khwab.html', './wazifa-library.html', './mohabbat-jafar.html', './rizq-jafar.html', './shadi-jafar.html', './istikhara-online.html', './naam-ka-burj.html', './istikhara-ki-dua.html', './loh-e-jafar-tareeqa.html', './abjad-number.html','./qismat-number.html','./top-names.html','./qarz-jafar.html','./naukri-jafar.html','./dushman-hifazat.html','./nazar-bad.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', function(e) {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE).then(function(c) { return c.addAll(FILES); }));
