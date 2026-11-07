@@ -4,11 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>طلسم جفر جنریٹر — Talism Jafar Generator | Free Ilm-e-Jafar Tool</title>
-<meta name="description" content="Free Talism Jafar Generator in 5 languages with 5 themes: Abjad-e-Qamri per-letter breakdown, classic Takseer, Satr-e-Asasi, 3x3 and 4x4 Loh with image download, Mustahsila-e-Qurani Istikhara. 100% in-browser.">
+<meta name="description" content="Free Talism Jafar Generator in 5 languages with English-name support: Abjad-e-Qamri per-letter breakdown, classic Takseer, Satr-e-Asasi, 3x3 and 4x4 Loh with image download, Mustahsila-e-Qurani Istikhara. 100% in-browser.">
 <meta property="og:title" content="Talism Jafar Generator — Free">
-<meta property="og:description" content="Classic Jafar Takseer, Abjad breakdown, Loh 3x3/4x4 and Qurani Istikhara — free, in-browser, 5 languages, 5 themes.">
+<meta property="og:description" content="Classic Jafar Takseer, Abjad breakdown, Loh 3x3/4x4 and Qurani Istikhara — free, in-browser, 5 languages, English names supported.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://farrakhimtiaz74.github.io/talism-jafar-generator/">
+<meta property="og:image" content="https://farrakhimtiaz74.github.io/talism-jafar-generator/promo-v4.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#062e1d">
 <link rel="icon" href="icon-192.png">
@@ -102,6 +104,7 @@ body[data-lang="hi"]{font-family:'Noto Sans Devanagari',Tahoma,sans-serif;line-h
 <p class="sub" data-i="appSub">کلاسک جفر ترتیب، تکسیر اور سطرِ اساسی — ورژن 5</p>
 <p class="sub">Talism Jafar Generator · Free · No Signup · Data stays in your browser</p>
 <div class="trust"><span data-i="bdg1">✓ 100% مفت</span><span data-i="bdg2">✓ بغیر سائن اپ</span><span data-i="bdg3">✓ نام فون سے باہر نہیں جاتا</span></div>
+<div id="hijriDate" class="sub" style="text-align:center;margin-top:2px"></div>
 </header>
 <main>
 <div class="settings">
@@ -376,6 +379,7 @@ renderHist();
 document.getElementById('genBtn').addEventListener('click',function(){
 var talib=document.getElementById('talib').value,tm=document.getElementById('talibMother').value,mat=document.getElementById('matloob').value,mm=document.getElementById('matloobMother').value;
 if(!clean(talib)||!clean(mat)){alert(T('alertNames'));return;}
+var oT=talib,oTM=tm,oM=mat,oMM=mm;
 var conv=[];function NN(vv){if(hasLatin(vv)){var tt=translit(vv);conv.push(vv+' \u2192 '+tt);return tt;}return vv;}
 talib=NN(talib);tm=NN(tm);mat=NN(mat);mm=NN(mm);
 var b1=breakdown(talib),b2=breakdown(tm),b3=breakdown(mat),b4=breakdown(mm),bp=breakdown(purposeText);
@@ -406,7 +410,8 @@ document.getElementById('loh').innerHTML=html;
 document.getElementById('resultCard').classList.remove('hidden');
 var lohTxt='';for(var lr=0;lr<size;lr++){lohTxt+='\n'+grid.slice(lr*size,lr*size+size).join(' | ');}
 lastText='Talism Jafar Generator \u2014 Result\nTalib: '+talib+' = '+b1.total+' ('+b1.parts.join(' ')+')\nTalib Mother: '+tm+' = '+b2.total+'\nMatloob: '+mat+' = '+b3.total+' ('+b3.parts.join(' ')+')\nMatloob Mother: '+mm+' = '+b4.total+'\nPurpose: '+purposeText+' = '+bp.total+'\nGrand Total: '+total+'\nMizaj: '+mz.el+'\nBase Line: '+base+'\nLoh '+size+'x'+size+' (sum '+rowSum+'):'+lohTxt+'\nTakseer:\n'+rows.join('\n')+'\nhttps://farrakhimtiaz74.github.io/talism-jafar-generator/';
-document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent('Talism Jafar Generator — FREE: '+location.href+'\nTotal: '+total);
+var rurl=location.origin+location.pathname+'?t='+encodeURIComponent(oT)+'&tm='+encodeURIComponent(oTM)+'&m='+encodeURIComponent(oM)+'&mm='+encodeURIComponent(oMM)+'&p='+PUR.indexOf(purposeText)+'&sz='+size;
+document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent('Talism Jafar Generator — میرا جفر نتیجہ (Total: '+total+'):\n'+rurl+'\nآپ بھی مفت بنائیں!');
 try{var h=JSON.parse(localStorage.getItem('jafarHist')||'[]');var lbl=talib+' / '+mat;if(!h.length||h[0].label!==lbl||h[0].total!==total){h.unshift({label:lbl,total:total,text:lastText});}h=h.slice(0,5);localStorage.setItem('jafarHist',JSON.stringify(h));renderHist();}catch(e){}
 document.getElementById('resultCard').scrollIntoView({behavior:'smooth'});
 });
@@ -453,6 +458,7 @@ at+='</tr></table>';document.getElementById('abjadTable').innerHTML=at;
 try{var sl=localStorage.getItem('jafarLang');if(sl&&I18N[sl])applyLang(sl);else applyLang('ur');}catch(e){applyLang('ur');}
 try{var st=localStorage.getItem('jafarTheme');if(st==='blue')applyTheme('blue');else applyTheme('classic');try{localStorage.removeItem('jafarZoom');}catch(e){}document.body.style.zoom='';}catch(e){}
 renderWazifa();
+try{var _hd=new Intl.DateTimeFormat('ur-PK-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'}).format(new Date());var _he=document.getElementById('hijriDate');if(_he)_he.textContent='☪ آج: '+_hd+' ھ';}catch(e){}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
 
 </script>
@@ -462,7 +468,8 @@ function isPro(){try{return localStorage.getItem('jafarPro')==='1';}catch(e){ret
 function applyPro(){var on=isPro();document.getElementById('proOn').classList.toggle('hidden',!on);document.getElementById('proLock').classList.toggle('hidden',on);if(on){document.getElementById('maxLines').max='300';}}
 document.getElementById('proBtn').addEventListener('click',function(){var v=document.getElementById('proCode').value.trim().toUpperCase();var nm=document.getElementById('proName').value;var okk=(v===PRO_CODE);if(!okk&&nm){okk=(v==='JAFAR-'+(100+(breakdown(nm).total%900)));}if(okk){try{localStorage.setItem('jafarPro','1');}catch(e){}applyPro();}else{document.getElementById('proMsg').textContent=T('proWrong');}});
 applyPro();
-(function(){var q=new URLSearchParams(location.search);var p=q.get('p');if(p!==null){var i=parseInt(p,10);if(i>=0&&i<8){purposeText=PUR[i];var cs=document.querySelectorAll('#chips .chip');for(var j=0;j<cs.length;j++)cs[j].classList.toggle('sel',j===i);}}var tb=q.get('tab');if(tb==='istikhara'||tb==='ilaj'){var bs=document.querySelectorAll('.tab');for(var j=0;j<bs.length;j++){if(bs[j].getAttribute('data-tab')===tb)bs[j].click();}}})();
+(function(){var q=new URLSearchParams(location.search);var p=q.get('p');if(p!==null){var i=parseInt(p,10);if(i>=0&&i<8){purposeText=PUR[i];var cs=document.querySelectorAll('#chips .chip');for(var j=0;j<cs.length;j++)cs[j].classList.toggle('sel',j===i);}}var gt=q.get('t');if(gt){document.getElementById('talib').value=gt;document.getElementById('talibMother').value=q.get('tm')||'';document.getElementById('matloob').value=q.get('m')||'';document.getElementById('matloobMother').value=q.get('mm')||'';var gsz=parseInt(q.get('sz')||'3',10);if(gsz===3||gsz===4)document.getElementById('lohSize').value=String(gsz);setTimeout(function(){document.getElementById('genBtn').click();},400);}
+var tb=q.get('tab');if(tb==='istikhara'||tb==='ilaj'){var bs=document.querySelectorAll('.tab');for(var j=0;j<bs.length;j++){if(bs[j].getAttribute('data-tab')===tb)bs[j].click();}}})();
 </script>
 <script data-cfasync="false" src="https://bauval.org/14/9e7691695bb11e93b3df2b7c606e1b46"></script>
 </body>
