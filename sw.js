@@ -1,19 +1,5 @@
-var CACHE = 'jafar-v25';
-var FILES = ['./', './index.html', './poster.html', './pro.html', './logo.svg', './burj.html', './ism-e-azam.html', './baby-name.html', './compatibility.html', './khwab.html', './wazifa-library.html', './mohabbat-jafar.html', './rizq-jafar.html', './shadi-jafar.html', './istikhara-online.html', './naam-ka-burj.html', './istikhara-ki-dua.html', './loh-e-jafar-tareeqa.html', './abjad-number.html','./qismat-number.html','./top-names.html','./qarz-jafar.html','./naukri-jafar.html','./dushman-hifazat.html','./nazar-bad.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
-self.addEventListener('install', function(e) {
-  self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(function(c) { return c.addAll(FILES); }));
-});
-self.addEventListener('activate', function(e) {
-  e.waitUntil(caches.keys().then(function(keys) {
-    return Promise.all(keys.map(function(k) { if (k !== CACHE) return caches.delete(k); }));
-  }).then(function() { return self.clients.claim(); }));
-});
-self.addEventListener('fetch', function(e) {
-  // Network-first so site updates reach returning visitors; cache is the offline fallback.
-  e.respondWith(fetch(e.request).then(function(res) {
-    var copy = res.clone();
-    caches.open(CACHE).then(function(c) { c.put(e.request, copy); });
-    return res;
-  }).catch(function() { return caches.match(e.request); }));
-});
+var CACHE='jafar-v26';
+var FILES=["./", "./404.html", "./abjad-number.html", "./asma-ul-husna.html", "./baby-name.html", "./burj-names.html", "./burj.html", "./compatibility.html", "./dua-library.html", "./dushman-hifazat.html", "./eid.html", "./en/abjad-calculator.html", "./en/dream-meanings.html", "./en/ilm-e-jafar-guide.html", "./en/istikhara-online.html", "./en/loh-e-jafar.html", "./en/zodiac-by-name.html", "./family-chart.html", "./faq.html", "./glossary.html", "./guide-istikhara.html", "./guide-loh.html", "./hajj-umrah.html", "./hijri-converter.html", "./icon-192.png", "./icon-512.png", "./index.html", "./islamic-calendar.html", "./ism-e-azam.html", "./istikhara-diary.html", "./istikhara-ki-dua.html", "./istikhara-online.html", "./khwab.html", "./logo.svg", "./loh-e-jafar-tareeqa.html", "./lucky-profile.html", "./manifest.webmanifest", "./mohabbat-jafar.html", "./muharram.html", "./naam-ka-burj.html", "./nagina.html", "./namaz-times.html", "./naukri-jafar.html", "./nazar-bad.html", "./poster.html", "./poster.jpg", "./promo-v4.jpg", "./qarz-jafar.html", "./qibla.html", "./qismat-number.html", "./ramadan.html", "./rizq-jafar.html", "./shadi-jafar.html", "./tasbeeh.html", "./top-names.html", "./wazifa-library.html", "./wazifa-week.html", "./zakat.html"];
+self.addEventListener('install',function(e){e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(FILES);}).then(function(){return self.skipWaiting();}))});
+self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.filter(function(k){return k!==CACHE;}).map(function(k){return caches.delete(k);}));}).then(function(){return self.clients.claim();}))});
+self.addEventListener('fetch',function(e){if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(function(r){return r||fetch(e.request).then(function(resp){var cp=resp.clone();caches.open(CACHE).then(function(c){c.put(e.request,cp);});return resp;}).catch(function(){return caches.match('./index.html');});}))});
