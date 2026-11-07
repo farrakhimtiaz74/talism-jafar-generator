@@ -116,11 +116,7 @@ body[data-lang="hi"]{font-family:'Noto Sans Devanagari',Tahoma,sans-serif;line-h
 <option value="ar">العربية</option>
 <option value="hi">हिन्दी</option>
 </select></div>
-<div><label data-i="themeLbl">تھیم / Theme</label>
-<div class="swatches">
-<button class="sw on" data-theme-set="classic" title="Classic Green + Gold" style="background:linear-gradient(135deg,#14532d,#d4af37)"></button>
-<button class="sw" data-theme-set="blue" title="Professional Blue" style="background:linear-gradient(135deg,#1d4ed8,#60a5fa)"></button>
-</div></div>
+
 </div>
 
 <div class="tabs">
@@ -456,7 +452,7 @@ for(var i=0;i<keys.length;i++){var v=ABJAD[keys[i]];var key=keys[i]+v;if(seenA[k
 for(var i=0;i<cells.length;i++){at+=cells[i];if(i%6===5)at+='</tr><tr>';}
 at+='</tr></table>';document.getElementById('abjadTable').innerHTML=at;
 try{var sl=localStorage.getItem('jafarLang');if(sl&&I18N[sl])applyLang(sl);else applyLang('ur');}catch(e){applyLang('ur');}
-try{var st=localStorage.getItem('jafarTheme');if(st==='blue')applyTheme('blue');else applyTheme('classic');try{localStorage.removeItem('jafarZoom');}catch(e){}document.body.style.zoom='';}catch(e){}
+try{var st=localStorage.getItem('jafarTheme');applyTheme('classic');try{localStorage.removeItem('jafarZoom');}catch(e){}document.body.style.zoom='';}catch(e){}
 renderWazifa();
 try{var _hd=new Intl.DateTimeFormat('ur-PK-u-ca-islamic',{day:'numeric',month:'long',year:'numeric'}).format(new Date());var _he=document.getElementById('hijriDate');if(_he)_he.textContent='☪ آج: '+_hd;}catch(e){}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
