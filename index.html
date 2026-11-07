@@ -194,7 +194,7 @@ body[data-lang="hi"]{font-family:'Noto Sans Devanagari',Tahoma,sans-serif;line-h
 <div class="rowbtns">
 <button class="btn2" id="pngBtn" data-i="pngBtn">لوح PNG</button>
 <button class="btn2" id="cardBtn" data-i="cardBtn">مکمل نتیجہ کارڈ PNG</button>
-<button class="btn2" id="printBtn" data-i="printBtn">پرنٹ / PDF</button>
+<button class="btn2" id="printBtn" data-i="printBtn">پرنٹ / PDF</button> <button class="btn2" id="lohPrintBtn">🖨️ فریم پرنٹ / Frame Print</button>
 <button class="btn2" id="copyBtn" data-i="copyBtn">کاپی کریں</button>
 <button class="btn2" id="dlBtn" data-i="dlBtn">TXT</button>
 <a class="btn2" id="waShare" target="_blank" rel="noopener" data-i="waBtn">واٹس ایپ شیئر</a>
@@ -210,7 +210,7 @@ body[data-lang="hi"]{font-family:'Noto Sans Devanagari',Tahoma,sans-serif;line-h
 <a href="baby-name.html"><b>👶 بچے کے نام کی جانچ</b><br><span class="sub">Baby Name Checker — عدد، برج، مزاج</span></a>
 <a href="compatibility.html"><b>💞 ناموں کی موافقت</b><br><span class="sub">Compatibility — دو ناموں کا ملان</span></a>
 <a href="khwab.html"><b>🌙 خواب کی تعبیر</b><br><span class="sub">Khwab ki Tabeer — تلاش کریں</span></a>
-<a href="wazifa-library.html"><b>📿 وظیفہ لائبریری</b><br><span class="sub">Wazifa Library — مسئلے کے مطابق</span></a>
+<a href="wazifa-library.html"><b>📿 وظیفہ لائبریری</b><br><span class="sub">Wazifa Library — مسئلے کے مطابق</span></a> <a href="qismat-number.html"><b>🔢 قسمت نمبر</b><br><span class="sub">Destiny Number — تاریخِ پیدائش سے لکی نمبر</span></a>
 </div><p class="sub" style="margin-top:10px">رہنمائی: <a href="mohabbat-jafar.html">محبت کا جفر</a> · <a href="rizq-jafar.html">رزق کا جفر</a> · <a href="shadi-jafar.html">شادی کا جفر</a> · <a href="istikhara-online.html">آن لائن استخارہ</a></p></div>
 <div class="card hidden" id="histCard"><h2 data-i="histTitle">آپ کے پچھلے نتائج (اسی موبائل میں محفوظ)</h2><div class="hist" id="hist"></div></div>
 
@@ -419,6 +419,13 @@ drawGrid(x,lastGrid,size,20,70,cell);
 x.font='15px Tahoma';x.fillStyle='#c9bfa5';x.fillText('۞ farrakhimtiaz74.github.io/talism-jafar-generator',cv.width/2,cv.height-14);
 var a=document.createElement('a');a.href=cv.toDataURL('image/png');a.download='talism-jafar-loh.png';a.click();
 });
+document.getElementById('lohPrintBtn').addEventListener('click',function(){
+if(!lastGrid.length)return;var w=window.open('','_blank');if(!w)return;var sz=lastSize;var cell=sz===3?92:62;
+var tbl='<table style="border-collapse:collapse;margin:10px auto">';
+for(var i=0;i<sz;i++){tbl+='<tr>';for(var j=0;j<sz;j++){tbl+='<td style="width:'+cell+'px;height:'+cell+'px;border:2px solid #8a6d1f;text-align:center;font-size:'+(sz===3?34:23)+'px;font-weight:bold;color:#14532d">'+lastGrid[i*sz+j]+'</td>';}tbl+='</tr>';}
+tbl+='</table>';
+var doc='<!DOCTYPE html><html lang="ur" dir="rtl"><head><meta charset="utf-8"><title>Loh-e-Jafar — Frame Print</title><style>body{margin:0;font-family:Tahoma;background:#fff}.sheet{width:182mm;margin:8mm auto;padding:10mm;border:6px double #b8860b;outline:2px solid #b8860b;outline-offset:6px;text-align:center;color:#14532d}h1{color:#8a6d1f;margin:2px 0 6px}.gold{color:#b8860b}</style></head><body><div class="sheet"><div style="font-size:32px" class="gold">\u06DE</div><h1>لوحِ جفر</h1><p>Talib: '+lastNames.talib+' &nbsp;·&nbsp; Matloob: '+lastNames.mat+'</p><p>'+purposeText+'</p><p style="font-weight:bold;font-size:18px">Total: '+lastNames.total+'</p>'+tbl+'<p style="margin-top:12px" class="gold">farrakhimtiaz74.github.io/talism-jafar-generator</p><p>Farrakh Tools \u2014 Free Forever</p></div><scr'+'ipt>window.onload=function(){setTimeout(function(){window.print();},300);};<\/scr'+'ipt></body></html>';
+w.document.write(doc);w.document.close();});
 document.getElementById('cardBtn').addEventListener('click',function(){
 if(!lastGrid.length)return;var cv=document.createElement('canvas');cv.width=840;cv.height=1140;var x=cv.getContext('2d');
 x.fillStyle='#062e1d';x.fillRect(0,0,840,1140);x.strokeStyle='#d4af37';x.lineWidth=6;x.strokeRect(18,18,804,1104);
